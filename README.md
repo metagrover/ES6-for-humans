@@ -1,4 +1,4 @@
-## ES6 for Humans
+# ES6 for Humans
 <br>
 
 ### 1. let, const and block spacing
@@ -238,7 +238,7 @@ var child = {
 
 Object.setPrototypeOf(child, parent);
 child.foo(); // Hello from the Parent
-				   // Hello from the Child
+			 // Hello from the Child
 ```
 
 <br>
@@ -434,5 +434,5 @@ Every Promise has a method named <code>then</code> which takes a pair of callbac
 
 ```javascript
 p.then((val) => console.log("Promise Resolved", val),
-            (err) => console.log("Promise Rejected", err));
+       (err) => console.log("Promise Rejected", err));
 ```
