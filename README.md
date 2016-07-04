@@ -53,9 +53,9 @@ Here is an example with the usual "block body"
 ```javascript
 let arr = ['apple', 'banana', 'orange'];
 
-let breakfast = arr.map( fruit => {
+let breakfast = arr.map(fruit => {
 	return fruit + 's';
-} );
+});
 
 console.log(breakfast); // apples bananas oranges
 ```
