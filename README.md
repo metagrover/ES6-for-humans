@@ -46,7 +46,7 @@ var getPrice = function() {
 // Implementation with Arrow Function
 var getPrice = () => 4.55;
 ```
-Note that in the above example, the <code>getPrice</code> arrow funtion is implemented with "concise body" which doesnot need an explicit return statement.
+Note that in the above example, the <code>getPrice</code> arrow function is implemented with "concise body" which does not need an explicit return statement.
 
 Here is an example with the usual "block body"
 
