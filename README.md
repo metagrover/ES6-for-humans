@@ -7,16 +7,21 @@
 
 ```javascript
 var a = 2; 
-{	let a = 3;
-	console.log(a); // 3}console.log(a); // 2
+{
+	let a = 3;
+	console.log(a); // 3
+}
+console.log(a); // 2
 ```
 
 Another form of block-scoped declaration is the <code>const</code>, which creates constants. In ES6, a <code>const</code> represents a constant reference to a value. In other words, the value is not frozen, just the assignment of it. Here's a simple example:
 
 ```javascript
-{	const ARR = [5,6];
+{
+	const ARR = [5,6];
 	ARR.push(7);
-	console.log(ARR); // [5,6,7]	ARR = 10; // TypeError
+	console.log(ARR); // [5,6,7]
+	ARR = 10; // TypeError
 }
 ```
 
@@ -48,7 +53,7 @@ Here is an example with the usual "block body"
 ```javascript
 let arr = ['apple', 'banana', 'orange'];
 
-let breakfast = arr.map( fruit => {
+arr.map( fruit => {
 	console.log(fruit + 's');
 } );  // apples bananas oranges
 ```
@@ -134,8 +139,11 @@ foo(...arr); // 1 2 3
 
 The other common usage of <code>...</code> is gathering a set of values together into an array. This is referred as "rest" operator.
 
-```javascriptfunction foo(...args) {
-	console.log(args);}foo( 1, 2, 3, 4, 5); // [1, 2, 3, 4, 5]
+```javascript
+function foo(...args) {
+	console.log(args);
+}
+foo( 1, 2, 3, 4, 5); // [1, 2, 3, 4, 5]
 ```
 
 <br>
@@ -201,16 +209,19 @@ Desctructuring helps in avoiding the need for temp variables when dealing with o
 
 ```javascript
 function foo() {
-	return [1,2,3];}
+	return [1,2,3];
+}
 let arr = foo(); // [1,2,3]
 
 let [a, b, c] = foo();
 console.log(a, b, c); // 1 2 3
 
 function bar() {
-	return {		x: 4,
+	return {
+		x: 4,
 		y: 5,
-		z: 6	};
+		z: 6
+	};
 }
 let {x: x, y: y, z: z} = bar();
 console.log(x, y, z); // 4 5 6
@@ -354,7 +365,8 @@ If a symbol is used as a property/key of an object, it’s stored in a special w
 
 ```javascript
 var o = { 
-	val: 10,    [ Symbol("random") ]: "I'm a symbol",
+	val: 10,
+    [ Symbol("random") ]: "I'm a symbol",
 };
 
 console.log(Object.getOwnPropertyNames(o)); // val
@@ -377,8 +389,11 @@ Let’s look at an array, which is an iterable, and the iterator it can produce 
 var arr = [11,12,13];
 var itr = arr[Symbol.iterator]();
 
-itr.next(); // { value: 11, done: false }itr.next(); // { value: 12, done: false }itr.next(); // { value: 13, done: false }
-itr.next(); // { value: undefined, done: true }
+itr.next(); // { value: 11, done: false }
+itr.next(); // { value: 12, done: false }
+itr.next(); // { value: 13, done: false }
+
+itr.next(); // { value: undefined, done: true }
 ```
 
 Note that you can write custom iterators by defining <code>\[Symbol.iterator]()</code> with the object definition.
