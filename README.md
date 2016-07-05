@@ -6,7 +6,7 @@
 <code>let</code> allows you to create declarations which are bound to any block, called block scoping. Instead of using <code>var</code>, which provides function scope, it is recommended to use <code>let</code> in ES6.
 
 ```javascript
-var a = 2; 
+var a = 2;
 {
 	let a = 3;
 	console.log(a); // 3
@@ -62,7 +62,7 @@ console.log(breakfast); // apples bananas oranges
 
 **Behold! There is more...**
 
-Arrow functions don't just make the code shorter. They are closely related to <code>this</code> binding behaviour. 
+Arrow functions don't just make the code shorter. They are closely related to <code>this</code> binding behaviour.
 
 Arrow functions behaviour with <code>this</code> keyword varies from that of normal functions. Each function in JavaScript defines its own <code>this</code> context but Arrow functions capture the <code>this</code> value of the enclosing context. Check out the following code:
 
@@ -72,7 +72,7 @@ function Person() {
   	this.age = 0;
 
   	setInterval(function growUp() {
-    	// In non-strict mode, the growUp() function defines `this` 
+    	// In non-strict mode, the growUp() function defines `this`
     	// as the global object, which is different from the `this`
     	// defined by the Person() constructor.
     	this.age++;
@@ -87,7 +87,7 @@ In ECMAScript 3/5, this issue was fixed by assigning the value in <code>this</co
 function Person() {
 	var self = this;
 	self.age = 0;
-	
+
 	setInterval(function growUp() {
     	// The callback refers to the `self` variable of which
     	// the value is the expected object.
@@ -150,7 +150,7 @@ foo( 1, 2, 3, 4, 5); // [1, 2, 3, 4, 5]
 
 <br>
 
-### 5. Object Literal Extensions 
+### 5. Object Literal Extensions
 
 ES6 allows declaring object literals by providing shorthand syntax for initializing properties from variables and defining function methods. It also enables the ability to have computed property keys in an object literal definition.
 
@@ -192,7 +192,7 @@ let car = getCar('Kia', 'Sorento', 40000);
 
 ### 6. Octal and Binary Literals
 
-ES6 has new support for octal and binary literals. 
+ES6 has new support for octal and binary literals.
 Prependending a number with <code>0o</code> or <code>0O</code> would convert it into octal value. Have a look at the following code:
 
 ```javascript
@@ -258,9 +258,9 @@ child.foo(); // Hello from the Parent
 
 ### 9. Template Literal and Delimiters
 
-ES6 introduces an easier way to add interpolation which are evaluated automatically. 
+ES6 introduces an easier way to add interpolation which are evaluated automatically.
 
-* <code>\`${ ... }\`</code> is used for rendering the variables. 
+* <code>\`${ ... }\`</code> is used for rendering the variables.
 * <code>\`</code> Backtick is used as delimiter.
 
 ```javascript
@@ -278,7 +278,7 @@ let nicknames = ['di', 'boo', 'punkeye'];
 nicknames.size = 3;
 for (let nickname of nicknames) {
 	console.log(nickname);
-} 
+}
 Result: di, boo, punkeye
 ```
 
@@ -289,7 +289,7 @@ let nicknames = ['di', 'boo', 'punkeye'];
 nicknames.size = 3;
 for (let nickname in nicknames) {
 	console.log(nickname);
-} 
+}
 Result: 0, 1, 2, size
 ```
 
@@ -299,7 +299,7 @@ Result: 0, 1, 2, size
 
 ES6 introduces new class syntax. One thing to note here is that ES6 class is not a new object-oriented inheritance model. They just serve as a syntactical sugar over JavaScript's existing prototype-based inheritance.
 
-One way to look at a class in ES6 is just a new syntax to work with prototypes and contructor functions that we'd use in ES5. 
+One way to look at a class in ES6 is just a new syntax to work with prototypes and contructor functions that we'd use in ES5.
 
 ```javascript
 class Task {
@@ -332,7 +332,7 @@ class Porche extends Car {
 	}
 }
 
-let c = new Porche(); 
+let c = new Porche();
 // Creating a new car
 // Creating Porche
 ```
@@ -343,7 +343,7 @@ Also, you can call parent class's method in child class's methods using <code>su
 
 [Read more about classes here](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
 
-A few things to keep in mind: 
+A few things to keep in mind:
 
 * Class declarations are not hoisted. You first need to declare your class and then access it, otherwise ReferenceError will be thrown.
 * There is no need to use <code>function</code> keyword when defining functions inside a class definition.
@@ -366,7 +366,7 @@ Note that you cannot use new with Symbol(..).
 If a symbol is used as a property/key of an object, it’s stored in a special way that the property will not show up in a normal enumeration of the object’s properties.
 
 ```javascript
-var o = { 
+var o = {
 	val: 10,
     [ Symbol("random") ]: "I'm a symbol",
 };
@@ -453,3 +453,40 @@ Every Promise has a method named <code>then</code> which takes a pair of callbac
 p.then((val) => console.log("Promise Resolved", val),
        (err) => console.log("Promise Rejected", err));
 ```
+
+<br>
+
+### 16. Sets
+
+Set objects are collections of unique values. Duplicate values are ignored, as the collection must have all unique values. The values can be primitive types or object references.
+
+```javascript
+const mySet = new Set([1, 1, 2, 2, 3, 3]);
+mySet.size; // 3
+mySet.has(1); // true
+mySet.add('strings');
+mySet.add({ a: 1, b:2 });
+```
+
+You can iterate over a set by insertion order using either the `forEach` method or the `for...in` loop.
+
+```javascript
+mySet.forEach((item) => {
+  console.log(item);
+	// 1
+	// 2
+	// 3
+	// 'strings'
+	// Object { a: 1, b: 2 }
+});
+
+for (let value of mySet) {
+  console.log(value);
+	// 1
+	// 2
+	// 3
+	// 'strings'
+	// Object { a: 1, b: 2 }
+}
+```
+Sets also have the ` delete()` and ` clear()` methods.
