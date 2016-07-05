@@ -295,7 +295,119 @@ Result: 0, 1, 2, size
 
 <br>
 
-### 11. Classes in ES6
+### 11. Map and WeakMap
+
+ES6 introduces new set of data structures called <code>Map</code> and <code>WeakMap</code>. Now, we actually use maps in JavaScript all the time. Infact every object can be considered as a <code>Map</code>.
+
+An object is made of keys (always strings) and values, whereas in <code>Map</code>, any value (both objects and primitive values) may be used as either a key or a value. Have a look at this piece of code:
+
+```javascript
+var myMap = new Map();
+
+var keyString = "a string",
+    keyObj = {},
+    keyFunc = function () {};
+
+// setting the values
+myMap.set(keyString, "value associated with 'a string'");
+myMap.set(keyObj, "value associated with keyObj");
+myMap.set(keyFunc, "value associated with keyFunc");
+
+myMap.size; // 3
+
+// getting the values
+myMap.get(keyString);    // "value associated with 'a string'"
+myMap.get(keyObj);       // "value associated with keyObj"
+myMap.get(keyFunc);      // "value associated with keyFunc"
+```
+
+**WeakMap**
+
+A <code>WeakMap</code> is a Map in which the keys are weakly referenced, that doesn’t prevent its keys from being garbage-collected. That means you don't have to worry about memory leaks.
+
+Another thing to note here- in <code>WeakMap</code> as opposed to <code>Map</code> *every key must be an object*.
+
+A <code>WeakMap</code> only has four methods <code>delete(key)</code>, <code>has(key)</code>, <code>get(key)</code> and <code>set(key, value)</code>.
+
+```javascript
+let w = new WeakMap();
+w.set('a', 'b'); 
+// Uncaught TypeError: Invalid value used as weak map key
+
+var o1 = {},
+    o2 = function(){},
+    o3 = window;
+
+w.set(o1, 37);
+w.set(o2, "azerty");
+w.set(o3, undefined);
+
+w.get(o3); // undefined, because that is the set value
+
+w.has(o1); // true
+w.delete(o1);
+w.has(o1); // false
+```
+
+<br>
+
+### 12. Set and WeakSet
+
+Set objects are collections of unique values. Duplicate values are ignored, as the collection must have all unique values. The values can be primitive types or object references.
+
+```javascript
+let mySet = new Set([1, 1, 2, 2, 3, 3]);
+mySet.size; // 3
+mySet.has(1); // true
+mySet.add('strings');
+mySet.add({ a: 1, b:2 });
+```
+
+You can iterate over a set by insertion order using either the `forEach` method or the `for...in` loop.
+
+```javascript
+mySet.forEach((item) => {
+  console.log(item);
+	// 1
+	// 2
+	// 3
+	// 'strings'
+	// Object { a: 1, b: 2 }
+});
+
+for (let value of mySet) {
+  console.log(value);
+	// 1
+	// 2
+	// 3
+	// 'strings'
+	// Object { a: 1, b: 2 }
+}
+```
+Sets also have the ` delete()` and ` clear()` methods.
+
+**WeakSet**
+
+Similar to <code>WeakMap</code>, the <code>WeakSet</code> object lets you store weakly held *objects* in a collection. An object in the <code>WeakSet</code> occurs only once; it is unique in the WeakSet's collection.
+
+```javascript
+var ws = new WeakSet();
+var obj = {};
+var foo = {};
+
+ws.add(window);
+ws.add(obj);
+
+ws.has(window); // true
+ws.has(foo);    // false, foo has not been added to the set
+
+ws.delete(window); // removes window from the set
+ws.has(window);    // false, window has been removed
+```
+
+<br>
+
+### 13. Classes in ES6
 
 ES6 introduces new class syntax. One thing to note here is that ES6 class is not a new object-oriented inheritance model. They just serve as a syntactical sugar over JavaScript's existing prototype-based inheritance.
 
@@ -350,7 +462,7 @@ A few things to keep in mind:
 
 <br>
 
-### 12. Symbol
+### 14. Symbol
 
 A symbol is a unique and immutable data type introduced in ES6. The purpose of a symbol is to generate a unique identifier but you can never get any access to that identifier.
 
@@ -379,7 +491,7 @@ To retrieve an object’s symbol properties, use <code>Object.getOwnPropertySymb
 
 <br>
 
-### 13. Iterators
+### 15. Iterators
 
 An iterator accesses the items from a collection one at a time, while keeping track of its current position within that sequence. It provides a <code>next()</code> method which returns the next item in the sequence. This method returns an object with two properties: done and value.
 
@@ -402,7 +514,7 @@ Note that you can write custom iterators by defining <code>\[Symbol.iterator]()<
 
 <br>
 
-### 14. Generators
+### 16. Generators
 
 Generator functions are a new feature in ES6 that allow a function to generate many values over time by returning an object which can be iterated over to pull values from the function one value at a time.
 
@@ -430,7 +542,7 @@ Also, note that generators compute their yielded values on demand, which allows 
 
 <br>
 
-### 15. Promises
+### 17. Promises
 
 ES6 has native support for promises. A promise is an object that is waiting for an asynchronous operation to complete, and when that operation completes, the promise is either fulfilled(resolved) or rejected.
 
@@ -453,40 +565,3 @@ Every Promise has a method named <code>then</code> which takes a pair of callbac
 p.then((val) => console.log("Promise Resolved", val),
        (err) => console.log("Promise Rejected", err));
 ```
-
-<br>
-
-### 16. Sets
-
-Set objects are collections of unique values. Duplicate values are ignored, as the collection must have all unique values. The values can be primitive types or object references.
-
-```javascript
-const mySet = new Set([1, 1, 2, 2, 3, 3]);
-mySet.size; // 3
-mySet.has(1); // true
-mySet.add('strings');
-mySet.add({ a: 1, b:2 });
-```
-
-You can iterate over a set by insertion order using either the `forEach` method or the `for...in` loop.
-
-```javascript
-mySet.forEach((item) => {
-  console.log(item);
-	// 1
-	// 2
-	// 3
-	// 'strings'
-	// Object { a: 1, b: 2 }
-});
-
-for (let value of mySet) {
-  console.log(value);
-	// 1
-	// 2
-	// 3
-	// 'strings'
-	// Object { a: 1, b: 2 }
-}
-```
-Sets also have the ` delete()` and ` clear()` methods.
