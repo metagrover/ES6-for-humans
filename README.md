@@ -233,7 +233,7 @@ console.log(x, y, z); // 4 5 6
 
 ### 8. super in Objects
 
-ES6 allows to use <code>super</code> method in (classless) objects with prototypes. Following is a simple examle:
+ES6 allows to use <code>super</code> method in (classless) objects with prototypes. Following is a simple example:
 
 ```javascript
 var parent = {
