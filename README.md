@@ -1,7 +1,7 @@
 # ES6 for Humans
 <br>
 
-### 1. let, const and block spacing
+### 1. let, const and block scoping
 
 <code>let</code> allows you to create declarations which are bound to any block, called block scoping. Instead of using <code>var</code>, which provides function scope, it is recommended to use <code>let</code> in ES6.
 
@@ -413,6 +413,8 @@ ES6 introduces new class syntax. One thing to note here is that ES6 class is not
 
 One way to look at a class in ES6 is just a new syntax to work with prototypes and contructor functions that we'd use in ES5.
 
+Functions defined using the `static` keyword implement static/class functions on the class.
+
 ```javascript
 class Task {
 	constructor() {
@@ -421,9 +423,16 @@ class Task {
 	showId() {
 		console.log(23);
 	}
+	
+	static loadAll() {
+		console.log("Loading all tasks..");
+	}
 }
 
 console.log(typeof Task); // function
+let task = new Task(); // "task instantiated!"
+task.showId(); // 23
+Task.loadAll(); // "Loading all tasks.."
 ```
 
 **extends and super in classes**
@@ -437,16 +446,16 @@ class Car {
 	}
 }
 
-class Porche extends Car {
+class Porsche extends Car {
 	constructor() {
 		super();
-		console.log("Creating Porche");
+		console.log("Creating Porsche");
 	}
 }
 
-let c = new Porche();
+let c = new Porsche();
 // Creating a new car
-// Creating Porche
+// Creating Porsche
 ```
 
 <code>extends</code> allow child class to inherit from parent class in ES6. It is important to note that the derived constructor must call super().
