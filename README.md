@@ -603,7 +603,7 @@ Every Promise has a method named `then` which takes a pair of callbacks. The fir
 
 ```javascript
 p.then((val) => console.log("Promise Resolved", val),
-    (err) => console.log("Promise Rejected", err));
+       (err) => console.log("Promise Rejected", err));
 ```
 
 Returning a value from `then` callbacks will pass the value to the next `then` callback.
@@ -618,7 +618,7 @@ hello.then((str) => `${str} World`)
      .then((str) => console.log(str)) // Hello World!
 ```
 
-When returning a promise the resolved value of the promise will get passed to the next callback to effectively chain them together.
+When returning a promise, the resolved value of the promise will get passed to the next callback to effectively chain them together.
 This is a simple technique to avoid "callback hell".
 
 ```javascript
