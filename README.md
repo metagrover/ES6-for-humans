@@ -363,7 +363,7 @@ mySet.add('strings');
 mySet.add({ a: 1, b:2 });
 ```
 
-You can iterate over a set by insertion order using either the `forEach` method or the `for...in` loop.
+You can iterate over a set by insertion order using either the `forEach` method or the `for...of` loop.
 
 ```javascript
 mySet.forEach((item) => {
