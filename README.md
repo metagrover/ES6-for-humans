@@ -22,6 +22,8 @@ Another form of block-scoped declaration is the <code>const</code>, which create
 	ARR.push(7);
 	console.log(ARR); // [5,6,7]
 	ARR = 10; // TypeError
+	ARR[0] = 3; // value is not immutable
+	console.log(ARR); // [3,6,7]
 }
 ```
 
