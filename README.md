@@ -1,54 +1,83 @@
 # ES6 for Humans
+
+<br>
+
+### Table of Contents
+
+* [`let`, `const` and block scoping](#1-let-const-and-block-scoping)
+* [Arrow Functions](#2-arrow-functions)
+* [Default Function Parameters](#3-default-function-parameters)
+* [Spread/Rest Operator](#4-spread-rest-operator)
+* [Object Literal Extensions](#5-object-literal-extensions)
+* [Octal and Binary Literals](#6-octal-and-binary-literals)
+* [Array and Object Destructuring](#7-array-and-object-destructuring)
+* [super in Objects](#super-in-objects)
+* [Template Literal and Delimiters](#template-literal-and-delimiters)
+* [for...of vs for...in](#forof-vs-forin)
+* [Map and WeakMap](#map-and-weakmap)
+* [Set and WeakSet](#set-and-weakset)
+* [Classes in ES6](#classes-in-es6)
+* [Symbol](#symbol)
+* [Iterators](#iterators)
+* [Generators](#generators)
+* [Promises](#promises)
+
+<br>
+
+### Languages
+
+* [Chinese Version (Thanks to barretlee)](http://www.barretlee.com/blog/2016/07/09/a-kickstarter-guide-to-writing-es6/)
+
 <br>
 
 ### 1. let, const and block scoping
 
-<code>let</code> allows you to create declarations which are bound to any block, called block scoping. Instead of using <code>var</code>, which provides function scope, it is recommended to use <code>let</code> in ES6.
+`let` allows you to create declarations which are bound to any block, called block scoping. Instead of using `var`, which provides function scope, it is recommended to use `let` in ES6.
 
 ```javascript
 var a = 2;
 {
-	let a = 3;
-	console.log(a); // 3
+    let a = 3;
+    console.log(a); // 3
 }
 console.log(a); // 2
 ```
 
-Another form of block-scoped declaration is the <code>const</code>, which creates constants. In ES6, a <code>const</code> represents a constant reference to a value. In other words, the value is not frozen, just the assignment of it. Here's a simple example:
+Another form of block-scoped declaration is the `const`, which creates constants. In ES6, a `const` represents a constant reference to a value. In other words, the value is not frozen, just the assignment of it. Here's a simple example:
 
 ```javascript
 {
-	const ARR = [5,6];
-	ARR.push(7);
-	console.log(ARR); // [5,6,7]
-	ARR = 10; // TypeError
-	ARR[0] = 3; // value is not immutable
-	console.log(ARR); // [3,6,7]
+    const ARR = [5,6];
+    ARR.push(7);
+    console.log(ARR); // [5,6,7]
+    ARR = 10; // TypeError
+    ARR[0] = 3; // value is not immutable
+    console.log(ARR); // [3,6,7]
 }
 ```
 
 A few things to keep in mind:
 
-* No Hoisting takes place when we use <code>let</code> keyword.
-* <code>let</code> and <code>const</code> are scoped to the nearest enclosing block.
-* When using <code>const</code>, use CAPITAL_CASING.
-* <code>const</code> has to be defined with its declaration.
+* No Hoisting takes place when we use `let` keyword.
+* `let` and `const` are scoped to the nearest enclosing block.
+* When using `const`, use CAPITAL_CASING.
+* `const` has to be defined with its declaration.
 
 <br>
 
 ### 2. Arrow Functions
 
-Arrow Functions are a short-hand notation for writing functions in ES6. The arrow function definition consists of a parameter list <code>( ... )</code>, followed by the <code>=></code> marker and a function body.
+Arrow Functions are a short-hand notation for writing functions in ES6. The arrow function definition consists of a parameter list `( ... )`, followed by the `=>` marker and a function body.
 
 ```javascript
 var getPrice = function() {
-	return 4.55;
+    return 4.55;
 };
 
 // Implementation with Arrow Function
 var getPrice = () => 4.55;
 ```
-Note that in the above example, the <code>getPrice</code> arrow function is implemented with "concise body" which does not need an explicit return statement.
+Note that in the above example, the `getPrice` arrow function is implemented with "concise body" which does not need an explicit return statement.
 
 Here is an example with the usual "block body"
 
@@ -56,45 +85,45 @@ Here is an example with the usual "block body"
 let arr = ['apple', 'banana', 'orange'];
 
 let breakfast = arr.map(fruit => {
-	return fruit + 's';
+    return fruit + 's';
 });
 
-console.log(breakfast); // apples bananas oranges
+console.log(breakfast); // ['apples', 'bananas', 'oranges']
 ```
 
 **Behold! There is more...**
 
-Arrow functions don't just make the code shorter. They are closely related to <code>this</code> binding behaviour.
+Arrow functions don't just make the code shorter. They are closely related to `this` binding behavior.
 
-Arrow functions behaviour with <code>this</code> keyword varies from that of normal functions. Each function in JavaScript defines its own <code>this</code> context but Arrow functions capture the <code>this</code> value of the enclosing context. Check out the following code:
+Arrow functions behavior with `this` keyword varies from that of normal functions. Each function in JavaScript defines its own `this` context but Arrow functions capture the `this` value of the enclosing context. Check out the following code:
 
 ```javascript
 function Person() {
-	// The Person() constructor defines `this` as an instance of itself.
-  	this.age = 0;
+    // The Person() constructor defines `this` as an instance of itself.
+        this.age = 0;
 
-  	setInterval(function growUp() {
-    	// In non-strict mode, the growUp() function defines `this`
-    	// as the global object, which is different from the `this`
-    	// defined by the Person() constructor.
-    	this.age++;
-  	}, 1000);
+        setInterval(function growUp() {
+            // In non-strict mode, the growUp() function defines `this`
+            // as the global object, which is different from the `this`
+            // defined by the Person() constructor.
+            this.age++;
+        }, 1000);
 }
 var p = new Person();
 ```
 
-In ECMAScript 3/5, this issue was fixed by assigning the value in <code>this</code> to a variable that could be closed over.
+In ECMAScript 3/5, this issue was fixed by assigning the value in `this` to a variable that could be closed over.
 
 ```javascript
 function Person() {
-	var self = this;
-	self.age = 0;
+    var self = this;
+    self.age = 0;
 
-	setInterval(function growUp() {
-    	// The callback refers to the `self` variable of which
-    	// the value is the expected object.
-    	self.age++;
-  	}, 1000);
+    setInterval(function growUp() {
+            // The callback refers to the `self` variable of which
+            // the value is the expected object.
+            self.age++;
+        }, 1000);
 }
 ```
 
@@ -102,11 +131,11 @@ As mentioned above, Arrow functions capture the this value of the enclosing cont
 
 ```javascript
 function Person(){
-	this.age = 0;
+    this.age = 0;
 
-	setInterval(() => {
-    	this.age++; // |this| properly refers to the person object
-  	}, 1000);
+    setInterval(() => {
+            this.age++; // `this` properly refers to the person object
+        }, 1000);
 }
 
 var p = new Person();
@@ -128,24 +157,24 @@ getFinalPrice(500); // 850
 
 ### 4. Spread / Rest Operator
 
-<code>...</code> operator is referred to as spread or rest operator, depending on how and where it is used.
+`...` operator is referred to as spread or rest operator, depending on how and where it is used.
 
 When used with any iterable, it acts as to "spread" it into individual elements:
 
 ```javascript
 function foo(x,y,z) {
-	console.log(x,y,z);
+    console.log(x,y,z);
 }
 
 let arr = [1,2,3];
 foo(...arr); // 1 2 3
 ```
 
-The other common usage of <code>...</code> is gathering a set of values together into an array. This is referred as "rest" operator.
+The other common usage of `...` is gathering a set of values together into an array. This is referred as "rest" operator.
 
 ```javascript
 function foo(...args) {
-	console.log(args);
+    console.log(args);
 }
 foo( 1, 2, 3, 4, 5); // [1, 2, 3, 4, 5]
 ```
@@ -158,25 +187,25 @@ ES6 allows declaring object literals by providing shorthand syntax for initializ
 
 ```javascript
 function getCar(make, model, value) {
-	return {
-		// with property value shorthand
-		// syntax, you can omit the property
-		// value if key matches variable
-		// name
-		make,  // same as make: make
-		model, // same as model: model
-		value, // same as value: value
+    return {
+        // with property value shorthand
+        // syntax, you can omit the property
+        // value if key matches variable
+        // name
+        make,  // same as make: make
+        model, // same as model: model
+        value, // same as value: value
 
-		// computed values now work with
-		// object literals
-		['make' + make]: true,
+        // computed values now work with
+        // object literals
+        ['make' + make]: true,
 
-		// Method definition shorthand syntax
-		// omits `function` keyword & colon
-		depreciate() {
-			this.value -= 2500;
-		}
-	};
+        // Method definition shorthand syntax
+        // omits `function` keyword & colon
+        depreciate() {
+            this.value -= 2500;
+        }
+    };
 }
 
 let car = getCar('Kia', 'Sorento', 40000);
@@ -195,7 +224,7 @@ let car = getCar('Kia', 'Sorento', 40000);
 ### 6. Octal and Binary Literals
 
 ES6 has new support for octal and binary literals.
-Prependending a number with <code>0o</code> or <code>0O</code> would convert it into octal value. Have a look at the following code:
+Prependending a number with `0o` or `0O` would convert it into octal value. Have a look at the following code:
 
 ```javascript
 let oValue = 0o10;
@@ -213,7 +242,7 @@ Desctructuring helps in avoiding the need for temp variables when dealing with o
 
 ```javascript
 function foo() {
-	return [1,2,3];
+    return [1,2,3];
 }
 let arr = foo(); // [1,2,3]
 
@@ -221,11 +250,11 @@ let [a, b, c] = foo();
 console.log(a, b, c); // 1 2 3
 
 function bar() {
-	return {
-		x: 4,
-		y: 5,
-		z: 6
-	};
+    return {
+        x: 4,
+        y: 5,
+        z: 6
+    };
 }
 let {x: x, y: y, z: z} = bar();
 console.log(x, y, z); // 4 5 6
@@ -235,25 +264,25 @@ console.log(x, y, z); // 4 5 6
 
 ### 8. super in Objects
 
-ES6 allows to use <code>super</code> method in (classless) objects with prototypes. Following is a simple example:
+ES6 allows to use `super` method in (classless) objects with prototypes. Following is a simple example:
 
 ```javascript
 var parent = {
-	foo() {
-		console.log("Hello from the Parent");
-	}
+    foo() {
+        console.log("Hello from the Parent");
+    }
 }
 
 var child = {
-	foo() {
-		super.foo();
-		console.log("Hello from the Child");
-	}
+    foo() {
+        super.foo();
+        console.log("Hello from the Child");
+    }
 }
 
 Object.setPrototypeOf(child, parent);
 child.foo(); // Hello from the Parent
-			 // Hello from the Child
+             // Hello from the Child
 ```
 
 <br>
@@ -262,8 +291,8 @@ child.foo(); // Hello from the Parent
 
 ES6 introduces an easier way to add interpolation which are evaluated automatically.
 
-* <code>\`${ ... }\`</code> is used for rendering the variables.
-* <code>\`</code> Backtick is used as delimiter.
+* `\`${ ... }\`` is used for rendering the variables.
+* `\`` Backtick is used as delimiter.
 
 ```javascript
 let user = 'Kevin';
@@ -273,24 +302,24 @@ console.log(`Hi ${user}!`); // Hi Kevin!
 <br>
 
 ### 10. for...of vs for...in
-* <code>for...of</code> iterates over iterable objects, such as array.
+* `for...of` iterates over iterable objects, such as array.
 
 ```javascript
 let nicknames = ['di', 'boo', 'punkeye'];
 nicknames.size = 3;
 for (let nickname of nicknames) {
-	console.log(nickname);
+    console.log(nickname);
 }
 Result: di, boo, punkeye
 ```
 
-* <code>for...in</code> iterates over all enumerable properties of an object.
+* `for...in` iterates over all enumerable properties of an object.
 
 ```javascript
 let nicknames = ['di', 'boo', 'punkeye'];
 nicknames.size = 3;
 for (let nickname in nicknames) {
-	console.log(nickname);
+    console.log(nickname);
 }
 Result: 0, 1, 2, size
 ```
@@ -299,9 +328,9 @@ Result: 0, 1, 2, size
 
 ### 11. Map and WeakMap
 
-ES6 introduces new set of data structures called <code>Map</code> and <code>WeakMap</code>. Now, we actually use maps in JavaScript all the time. Infact every object can be considered as a <code>Map</code>.
+ES6 introduces new set of data structures called `Map` and `WeakMap`. Now, we actually use maps in JavaScript all the time. Infact every object can be considered as a `Map`.
 
-An object is made of keys (always strings) and values, whereas in <code>Map</code>, any value (both objects and primitive values) may be used as either a key or a value. Have a look at this piece of code:
+An object is made of keys (always strings) and values, whereas in `Map`, any value (both objects and primitive values) may be used as either a key or a value. Have a look at this piece of code:
 
 ```javascript
 var myMap = new Map();
@@ -325,11 +354,11 @@ myMap.get(keyFunc);      // "value associated with keyFunc"
 
 **WeakMap**
 
-A <code>WeakMap</code> is a Map in which the keys are weakly referenced, that doesn’t prevent its keys from being garbage-collected. That means you don't have to worry about memory leaks.
+A `WeakMap` is a Map in which the keys are weakly referenced, that doesn’t prevent its keys from being garbage-collected. That means you don't have to worry about memory leaks.
 
-Another thing to note here- in <code>WeakMap</code> as opposed to <code>Map</code> *every key must be an object*.
+Another thing to note here- in `WeakMap` as opposed to `Map` *every key must be an object*.
 
-A <code>WeakMap</code> only has four methods <code>delete(key)</code>, <code>has(key)</code>, <code>get(key)</code> and <code>set(key, value)</code>.
+A `WeakMap` only has four methods `delete(key)`, `has(key)`, `get(key)` and `set(key, value)`.
 
 ```javascript
 let w = new WeakMap();
@@ -369,28 +398,28 @@ You can iterate over a set by insertion order using either the `forEach` method 
 
 ```javascript
 mySet.forEach((item) => {
-  console.log(item);
-	// 1
-	// 2
-	// 3
-	// 'strings'
-	// Object { a: 1, b: 2 }
+    console.log(item);
+    // 1
+    // 2
+    // 3
+    // 'strings'
+    // Object { a: 1, b: 2 }
 });
 
 for (let value of mySet) {
-  console.log(value);
-	// 1
-	// 2
-	// 3
-	// 'strings'
-	// Object { a: 1, b: 2 }
+    console.log(value);
+    // 1
+    // 2
+    // 3
+    // 'strings'
+    // Object { a: 1, b: 2 }
 }
 ```
-Sets also have the ` delete()` and ` clear()` methods.
+Sets also have the `delete()` and `clear()` methods.
 
 **WeakSet**
 
-Similar to <code>WeakMap</code>, the <code>WeakSet</code> object lets you store weakly held *objects* in a collection. An object in the <code>WeakSet</code> occurs only once; it is unique in the WeakSet's collection.
+Similar to `WeakMap`, the `WeakSet` object lets you store weakly held *objects* in a collection. An object in the `WeakSet` occurs only once; it is unique in the WeakSet's collection.
 
 ```javascript
 var ws = new WeakSet();
@@ -419,17 +448,17 @@ Functions defined using the `static` keyword implement static/class functions on
 
 ```javascript
 class Task {
-	constructor() {
-		console.log("task instantiated!");
-	}
-	
-	showId() {
-		console.log(23);
-	}
-	
-	static loadAll() {
-		console.log("Loading all tasks..");
-	}
+    constructor() {
+        console.log("task instantiated!");
+    }
+    
+    showId() {
+        console.log(23);
+    }
+    
+    static loadAll() {
+        console.log("Loading all tasks..");
+    }
 }
 
 console.log(typeof Task); // function
@@ -444,16 +473,16 @@ Consider the following code:
 
 ```javascript
 class Car {
-	constructor() {
-		console.log("Creating a new car");
-	}
+    constructor() {
+        console.log("Creating a new car");
+    }
 }
 
 class Porsche extends Car {
-	constructor() {
-		super();
-		console.log("Creating Porsche");
-	}
+    constructor() {
+        super();
+        console.log("Creating Porsche");
+    }
 }
 
 let c = new Porsche();
@@ -461,16 +490,16 @@ let c = new Porsche();
 // Creating Porsche
 ```
 
-<code>extends</code> allow child class to inherit from parent class in ES6. It is important to note that the derived constructor must call super().
+`extends` allow child class to inherit from parent class in ES6. It is important to note that the derived constructor must call super().
 
-Also, you can call parent class's method in child class's methods using <code>super.parentMethodName()</code>
+Also, you can call parent class's method in child class's methods using `super.parentMethodName()`
 
 [Read more about classes here](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
 
 A few things to keep in mind:
 
 * Class declarations are not hoisted. You first need to declare your class and then access it, otherwise ReferenceError will be thrown.
-* There is no need to use <code>function</code> keyword when defining functions inside a class definition.
+* There is no need to use `function` keyword when defining functions inside a class definition.
 
 <br>
 
@@ -491,23 +520,23 @@ If a symbol is used as a property/key of an object, it’s stored in a special w
 
 ```javascript
 var o = {
-	val: 10,
-    [ Symbol("random") ]: "I'm a symbol",
+    val: 10,
+        [ Symbol("random") ]: "I'm a symbol",
 };
 
 console.log(Object.getOwnPropertyNames(o)); // val
 ```
 
-To retrieve an object’s symbol properties, use <code>Object.getOwnPropertySymbols(o)</code>
+To retrieve an object’s symbol properties, use `Object.getOwnPropertySymbols(o)`
 
 
 <br>
 
 ### 15. Iterators
 
-An iterator accesses the items from a collection one at a time, while keeping track of its current position within that sequence. It provides a <code>next()</code> method which returns the next item in the sequence. This method returns an object with two properties: done and value.
+An iterator accesses the items from a collection one at a time, while keeping track of its current position within that sequence. It provides a `next()` method which returns the next item in the sequence. This method returns an object with two properties: done and value.
 
-ES6 has <code>Symbol.iterator</code> which specifies the default iterator for an object. Whenever an object needs to be iterated (such as at the beginning of a for..of loop), its @@iterator method is called with no arguments, and the returned iterator is used to obtain the values to be iterated.
+ES6 has `Symbol.iterator` which specifies the default iterator for an object. Whenever an object needs to be iterated (such as at the beginning of a for..of loop), its @@iterator method is called with no arguments, and the returned iterator is used to obtain the values to be iterated.
 
 Let’s look at an array, which is an iterable, and the iterator it can produce to consume its values:
 
@@ -522,7 +551,7 @@ itr.next(); // { value: 13, done: false }
 itr.next(); // { value: undefined, done: true }
 ```
 
-Note that you can write custom iterators by defining <code>\[Symbol.iterator]()</code> with the object definition.
+Note that you can write custom iterators by defining `obj[Symbol.iterator]()` with the object definition.
 
 <br>
 
@@ -530,15 +559,15 @@ Note that you can write custom iterators by defining <code>\[Symbol.iterator]()<
 
 Generator functions are a new feature in ES6 that allow a function to generate many values over time by returning an object which can be iterated over to pull values from the function one value at a time.
 
-A generator function returns an **iterable oject** when it's called.
-It is written using the new <code>*</code> syntax as well as the new <code>yield</code> keyword introduced in ES6.
+A generator function returns an **iterable object** when it's called.
+It is written using the new `*` syntax as well as the new `yield` keyword introduced in ES6.
 
 ```javascript
 function *infiniteNumbers() {
-	var n = 1;
-  	while (true){
-    	yield n++;
-  	}
+    var n = 1;
+    while (true) {
+        yield n++;
+    }
 }
 
 var numbers = infiniteNumbers(); // returns an iterable object
@@ -558,22 +587,21 @@ Also, note that generators compute their yielded values on demand, which allows 
 
 ES6 has native support for promises. A promise is an object that is waiting for an asynchronous operation to complete, and when that operation completes, the promise is either fulfilled(resolved) or rejected.
 
-The standard way to create a Promise is by using the <code>new Promise()</code> constructor which accepts a handler that is given two functions as parameters. The first handler (typically named <code>resolve</code>) is a function to call with the future value when it's ready; and the second handler (typically named <code>reject</code>) is a function to call to reject the Promise if it can't resolve the future value.
+The standard way to create a Promise is by using the `new Promise()` constructor which accepts a handler that is given two functions as parameters. The first handler (typically named `resolve`) is a function to call with the future value when it's ready; and the second handler (typically named `reject`) is a function to call to reject the Promise if it can't resolve the future value.
 
 ```javascript
 var p = new Promise(function(resolve, reject) {  
-	if (/* condition */) {
-    	resolve(/* value */);  // fulfilled successfully
-   	}
-   	else {
-   		reject(/* reason */);  // error, rejected
-   	}
+    if (/* condition */) {
+        resolve(/* value */);  // fulfilled successfully
+    } else {
+        reject(/* reason */);  // error, rejected
+    }
 });
 ```
 
-Every Promise has a method named <code>then</code> which takes a pair of callbacks. The first callback is called if the promise is resolved, while the second is called if the promise is rejected.
+Every Promise has a method named `then` which takes a pair of callbacks. The first callback is called if the promise is resolved, while the second is called if the promise is rejected.
 
 ```javascript
 p.then((val) => console.log("Promise Resolved", val),
-       (err) => console.log("Promise Rejected", err));
+    (err) => console.log("Promise Rejected", err));
 ```
