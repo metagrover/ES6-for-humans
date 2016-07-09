@@ -291,8 +291,8 @@ child.foo(); // Hello from the Parent
 
 ES6 introduces an easier way to add interpolation which are evaluated automatically.
 
-* `\`${ ... }\`` is used for rendering the variables.
-* `\`` Backtick is used as delimiter.
+* <code>\`${ ... }\`</code> is used for rendering the variables.
+* <code>\`</code> Backtick is used as delimiter.
 
 ```javascript
 let user = 'Kevin';
