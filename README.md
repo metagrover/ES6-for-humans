@@ -100,14 +100,14 @@ Arrow functions behavior with `this` keyword varies from that of normal function
 ```javascript
 function Person() {
     // The Person() constructor defines `this` as an instance of itself.
-        this.age = 0;
+    this.age = 0;
 
-        setInterval(function growUp() {
-            // In non-strict mode, the growUp() function defines `this`
-            // as the global object, which is different from the `this`
-            // defined by the Person() constructor.
-            this.age++;
-        }, 1000);
+    setInterval(function growUp() {
+        // In non-strict mode, the growUp() function defines `this`
+        // as the global object, which is different from the `this`
+        // defined by the Person() constructor.
+        this.age++;
+    }, 1000);
 }
 var p = new Person();
 ```
@@ -120,10 +120,10 @@ function Person() {
     self.age = 0;
 
     setInterval(function growUp() {
-            // The callback refers to the `self` variable of which
-            // the value is the expected object.
-            self.age++;
-        }, 1000);
+        // The callback refers to the `self` variable of which
+        // the value is the expected object.
+        self.age++;
+    }, 1000);
 }
 ```
 
@@ -134,8 +134,8 @@ function Person(){
     this.age = 0;
 
     setInterval(() => {
-            this.age++; // `this` properly refers to the person object
-        }, 1000);
+        this.age++; // `this` properly refers to the person object
+    }, 1000);
 }
 
 var p = new Person();
@@ -176,7 +176,7 @@ The other common usage of `...` is gathering a set of values together into an ar
 function foo(...args) {
     console.log(args);
 }
-foo( 1, 2, 3, 4, 5); // [1, 2, 3, 4, 5]
+foo(1, 2, 3, 4, 5); // [1, 2, 3, 4, 5]
 ```
 
 <br>
@@ -510,18 +510,18 @@ A symbol is a unique and immutable data type introduced in ES6. The purpose of a
 Here’s how you create a symbol:
 
 ```javascript
-var sym = Symbol( "some optional description" );
+var sym = Symbol("some optional description");
 console.log(typeof sym); // symbol
 ```
 
-Note that you cannot use new with Symbol(..).
+Note that you cannot use `new` with `Symbol(…)`.
 
 If a symbol is used as a property/key of an object, it’s stored in a special way that the property will not show up in a normal enumeration of the object’s properties.
 
 ```javascript
 var o = {
     val: 10,
-        [ Symbol("random") ]: "I'm a symbol",
+    [ Symbol("random") ]: "I'm a symbol",
 };
 
 console.log(Object.getOwnPropertyNames(o)); // val
