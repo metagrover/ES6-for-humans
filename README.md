@@ -256,8 +256,8 @@ function bar() {
         z: 6
     };
 }
-let {x: x, y: y, z: z} = bar();
-console.log(x, y, z); // 4 5 6
+let { a: x, b: y, c: z } = bar();
+console.log(a, b, c); // 4 5 6
 ```
 
 <br>
