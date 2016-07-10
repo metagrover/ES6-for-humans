@@ -58,7 +58,7 @@ Another form of block-scoped declaration is the `const`, which creates constants
 
 A few things to keep in mind:
 
-* No Hoisting takes place when we use `let` keyword.
+* Both `let` and `const` are hoisted, but cannot be accessed before their declaration, because of [Temporal Dead Zone](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified/) 
 * `let` and `const` are scoped to the nearest enclosing block.
 * When using `const`, use CAPITAL_CASING.
 * `const` has to be defined with its declaration.
