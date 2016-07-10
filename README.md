@@ -238,7 +238,7 @@ console.log(bValue); // 2
 
 ### 7. Array and Object Destructuring
 
-Desctructuring helps in avoiding the need for temp variables when dealing with object and arrays.
+Destructuring helps in avoiding the need for temp variables when dealing with object and arrays.
 
 ```javascript
 function foo() {
