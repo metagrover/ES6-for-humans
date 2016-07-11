@@ -70,12 +70,12 @@ A few things to keep in mind:
 Arrow Functions are a short-hand notation for writing functions in ES6. The arrow function definition consists of a parameter list `( ... )`, followed by the `=>` marker and a function body.
 
 ```javascript
-var getPrice = function() {
-    return 4.55;
+let addition = function(a,b) {
+    return a+b;
 };
 
 // Implementation with Arrow Function
-var getPrice = () => 4.55;
+let addition = (a,b) => a+b;
 ```
 Note that in the above example, the `getPrice` arrow function is implemented with "concise body" which does not need an explicit return statement.
 
