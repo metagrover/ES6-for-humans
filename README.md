@@ -256,7 +256,7 @@ function bar() {
         z: 6
     };
 }
-let { a: x, b: y, c: z } = bar();
+let { x: a, y: b, z: c } = bar();
 console.log(a, b, c); // 4 5 6
 ```
 
