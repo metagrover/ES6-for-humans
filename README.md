@@ -77,7 +77,7 @@ let addition = function(a,b) {
 // Implementation with Arrow Function
 let addition = (a,b) => a+b;
 ```
-Note that in the above example, the `getPrice` arrow function is implemented with "concise body" which does not need an explicit return statement.
+Note that in the above example, the `addition` arrow function is implemented with "concise body" which does not need an explicit return statement.
 
 Here is an example with the usual "block body"
 
