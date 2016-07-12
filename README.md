@@ -310,7 +310,9 @@ nicknames.size = 3;
 for (let nickname of nicknames) {
     console.log(nickname);
 }
-Result: di, boo, punkeye
+// di
+// boo
+// punkeye
 ```
 
 * `for...in` iterates over all enumerable properties of an object.
@@ -321,7 +323,10 @@ nicknames.size = 3;
 for (let nickname in nicknames) {
     console.log(nickname);
 }
-Result: 0, 1, 2, size
+// 0
+// 1
+// 2
+// size
 ```
 
 <br>
