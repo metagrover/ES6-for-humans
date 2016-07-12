@@ -333,7 +333,7 @@ for (let nickname in nicknames) {
 
 ### 11. Map and WeakMap
 
-ES6 introduces new set of data structures called `Map` and `WeakMap`. Now, we actually use maps in JavaScript all the time. Infact every object can be considered as a `Map`.
+ES6 introduces new set of data structures called `Map` and `WeakMap`. Now, we actually use maps in JavaScript all the time. In fact every object can be considered as a `Map`.
 
 An object is made of keys (always strings) and values, whereas in `Map`, any value (both objects and primitive values) may be used as either a key or a value. Have a look at this piece of code:
 
