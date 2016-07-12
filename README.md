@@ -47,7 +47,7 @@ Another form of block-scoped declaration is the `const`, which creates constants
 
 ```javascript
 {
-    const ARR = [5,6];
+    const ARR = [5, 6];
     ARR.push(7);
     console.log(ARR); // [5,6,7]
     ARR = 10; // TypeError
@@ -70,12 +70,12 @@ A few things to keep in mind:
 Arrow Functions are a short-hand notation for writing functions in ES6. The arrow function definition consists of a parameter list `( ... )`, followed by the `=>` marker and a function body.
 
 ```javascript
-let addition = function(a,b) {
-    return a+b;
+let addition = function(a, b) {
+    return a + b;
 };
 
 // Implementation with Arrow Function
-let addition = (a,b) => a+b;
+let addition = (a, b) => a + b;
 ```
 Note that in the above example, the `addition` arrow function is implemented with "concise body" which does not need an explicit return statement.
 
@@ -130,7 +130,7 @@ function Person() {
 As mentioned above, Arrow functions capture the this value of the enclosing context, so the following code works as expected.
 
 ```javascript
-function Person(){
+function Person() {
     this.age = 0;
 
     setInterval(() => {
@@ -149,7 +149,7 @@ var p = new Person();
 ES6 allows you to set default parameters in function definitions. Here is a simple illustration.
 
 ```javascript
-let getFinalPrice = (price, tax=0.7) => price + price * tax;
+let getFinalPrice = (price, tax = 0.7) => price + price * tax;
 getFinalPrice(500); // 850
 ```
 
@@ -162,11 +162,11 @@ getFinalPrice(500); // 850
 When used with any iterable, it acts as to "spread" it into individual elements:
 
 ```javascript
-function foo(x,y,z) {
-    console.log(x,y,z);
+function foo(x, y, z) {
+    console.log(x, y, z);
 }
 
-let arr = [1,2,3];
+let arr = [1, 2, 3];
 foo(...arr); // 1 2 3
 ```
 
@@ -242,7 +242,7 @@ Destructuring helps in avoiding the need for temp variables when dealing with ob
 
 ```javascript
 function foo() {
-    return [1,2,3];
+    return [1, 2, 3];
 }
 let arr = foo(); // [1,2,3]
 
@@ -342,7 +342,7 @@ var myMap = new Map();
 
 var keyString = "a string",
     keyObj = {},
-    keyFunc = function () {};
+    keyFunc = function() {};
 
 // setting the values
 myMap.set(keyString, "value associated with 'a string'");
@@ -367,7 +367,7 @@ A `WeakMap` only has four methods `delete(key)`, `has(key)`, `get(key)` and `set
 
 ```javascript
 let w = new WeakMap();
-w.set('a', 'b'); 
+w.set('a', 'b');
 // Uncaught TypeError: Invalid value used as weak map key
 
 var o1 = {},
@@ -526,7 +526,7 @@ If a symbol is used as a property/key of an object, it’s stored in a special w
 ```javascript
 var o = {
     val: 10,
-    [ Symbol("random") ]: "I'm a symbol",
+    [Symbol("random")]: "I'm a symbol",
 };
 
 console.log(Object.getOwnPropertyNames(o)); // val
