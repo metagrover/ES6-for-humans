@@ -7,7 +7,7 @@
 * [`let`, `const` and block scoping](#1-let-const-and-block-scoping)
 * [Arrow Functions](#2-arrow-functions)
 * [Default Function Parameters](#3-default-function-parameters)
-* [Spread/Rest Operator](#4-spread-rest-operator)
+* [Spread/Rest Operator](#4-spread--rest-operator)
 * [Object Literal Extensions](#5-object-literal-extensions)
 * [Octal and Binary Literals](#6-octal-and-binary-literals)
 * [Array and Object Destructuring](#7-array-and-object-destructuring)
