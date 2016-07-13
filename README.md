@@ -51,7 +51,7 @@ Another form of block-scoped declaration is the `const`, which creates constants
     ARR.push(7);
     console.log(ARR); // [5,6,7]
     ARR = 10; // TypeError
-    ARR[0] = 3; // value is not immutable
+    ARR[0] = 3; // value is mutable
     console.log(ARR); // [3,6,7]
 }
 ```
