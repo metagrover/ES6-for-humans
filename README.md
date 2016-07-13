@@ -209,8 +209,8 @@ function getCar(make, model, value) {
 }
 
 let car = getCar('Kia', 'Sorento', 40000);
-
-// output: {
+console.log(car);
+// {
 //     make: 'Kia',
 //     model:'Sorento',
 //     value: 40000,
