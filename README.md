@@ -76,6 +76,7 @@ A few things to keep in mind:
 Arrow Functions are a short-hand notation for writing functions in ES6. The arrow function definition consists of a parameter list `( ... )`, followed by the `=>` marker and a function body.
 
 ```javascript
+// Classical Function Expression
 let addition = function(a, b) {
     return a + b;
 };
