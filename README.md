@@ -74,7 +74,7 @@ A few things to keep in mind:
 
 ### 2. Arrow Functions
 
-Arrow Functions are a short-hand notation for writing functions in ES6. The arrow function definition consists of a parameter list `( ... )`, followed by the `=>` marker and a function body.
+Arrow functions are a short-hand notation for writing functions in ES6. The arrow function definition consists of a parameter list `( ... )`, followed by the `=>` marker and a function body.
 
 ```javascript
 // Classical Function Expression
@@ -82,7 +82,7 @@ let addition = function(a, b) {
     return a + b;
 };
 
-// Implementation with Arrow Function
+// Implementation with arrow function
 let addition = (a, b) => a + b;
 ```
 Note that in the above example, the `addition` arrow function is implemented with "concise body" which does not need an explicit return statement.
@@ -103,7 +103,7 @@ console.log(breakfast); // ['apples', 'bananas', 'oranges']
 
 Arrow functions don't just make the code shorter. They are closely related to `this` binding behavior.
 
-Arrow functions behavior with `this` keyword varies from that of normal functions. Each function in JavaScript defines its own `this` context but Arrow functions capture the `this` value of the enclosing context. Check out the following code:
+Arrow functions behavior with `this` keyword varies from that of normal functions. Each function in JavaScript defines its own `this` context but arrow functions capture the `this` value of the nearest enclosing context. Check out the following code:
 
 ```javascript
 function Person() {
@@ -135,14 +135,16 @@ function Person() {
 }
 ```
 
-As mentioned above, Arrow functions capture the this value of the enclosing context, so the following code works as expected.
+As mentioned above, arrow functions capture the this value of the nearest enclosing context, so the following code works as expected, even with nested arrow functions.
 
 ```javascript
 function Person() {
     this.age = 0;
 
     setInterval(() => {
-        this.age++; // `this` properly refers to the person object
+        setTimeout(() => {
+            this.age++; // `this` properly refers to the person object
+        }, 1000);
     }, 1000);
 }
 
