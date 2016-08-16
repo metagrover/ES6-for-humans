@@ -30,6 +30,7 @@
 * [Portuguese Version (Thanks to alexmoreno)](https://github.com/alexmoreno/ES6-para-humanos)
 * [Russian Version (Thanks to etnolover)](https://github.com/etnolover/ES6-for-humans-translation)
 * [Korean Version (Thanks to scarfunk)](https://github.com/metagrover/ES6-for-humans/tree/korean-version)
+* [French Version (Thanks to tnga)](https://github.com/metagrover/ES6-for-humans/tree/french-version)
 
 <br>
 
