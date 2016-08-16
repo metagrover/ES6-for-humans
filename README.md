@@ -1,40 +1,32 @@
-# ES6 for Humans
+# ES6 para humanos
 
 <br>
 
-### Table of Contents
+### Tabla de contenidos
 
-* [`let`, `const` and block scoping](#1-let-const-and-block-scoping)
-* [Arrow Functions](#2-arrow-functions)
-* [Default Function Parameters](#3-default-function-parameters)
-* [Spread/Rest Operator](#4-spread--rest-operator)
-* [Object Literal Extensions](#5-object-literal-extensions)
-* [Octal and Binary Literals](#6-octal-and-binary-literals)
-* [Array and Object Destructuring](#7-array-and-object-destructuring)
-* [super in Objects](#8-super-in-objects)
-* [Template Literal and Delimiters](#9-template-literal-and-delimiters)
+* [`let`, `const` y ámbito de bloques](#1-let-const-y-ámbito-de-bloques)
+* [Funciones flecha](#2-funciones-flecha)
+* [Parámetros de funciones por defecto](#3-parámetros-de-funciones-por-defecto)
+* [Operador de propagación/soporte](#4-operador-de-propagaciónsoporte)
+* [Extensión de objetos literales](#5-extensión-de-objetos-literales)
+* [Literales Octales y Binarios](#6-literales-octales-y-binarios)
+* [Desestructuración de Arrays y Objetos](#7-desestructuración-de-arrays-y-objetos)
+* [super en Objetos](#8-super-en-objetos)
+* [Plantillas de Literales y Delimitadores](#9-plantillas-de-literales-y-delimitadores)
 * [for...of vs for...in](#10-forof-vs-forin)
-* [Map and WeakMap](#11-map-and-weakmap)
-* [Set and WeakSet](#12-set-and-weakset)
-* [Classes in ES6](#13-classes-in-es6)
+* [Map y WeakMap](#11-map-y-weakmap)
+* [Set y WeakSet](#12-set-y-weakset)
+* [Clases en ES6](#13-clases-en-es6)
 * [Symbol](#14-symbol)
-* [Iterators](#15-iterators)
-* [Generators](#16-generators)
-* [Promises](#17-promises)
+* [Iteradores](#15-iteradores)
+* [Generadores](#16-generadores)
+* [Promesas](#17-promesas)
 
 <br>
 
-### Languages
+### 1. let, const y ámbito de bloques
 
-* [Chinese Version (Thanks to barretlee)](http://www.barretlee.com/blog/2016/07/09/a-kickstarter-guide-to-writing-es6/)
-* [Portuguese Version (Thanks to alexmoreno)](https://github.com/alexmoreno/ES6-para-humanos)
-* [Russian Version (Thanks to etnolover)](https://github.com/etnolover/ES6-for-humans-translation)
-
-<br>
-
-### 1. let, const and block scoping
-
-`let` allows you to create declarations which are bound to any block, called block scoping. Instead of using `var`, which provides function scope, it is recommended to use `let` in ES6.
+`let` permite hacer declaraciones ligadas a un bloque, lo que se conoce como ámbito de bloque. En vez de usar `var`, que proporciona un ámbito a nivel de función, se recomienda usar `let` en ES6.
 
 ```javascript
 var a = 2;
@@ -46,7 +38,7 @@ var a = 2;
 console.log(a); // 2
 ```
 
-Another form of block-scoped declaration is the `const`, which creates constants. In ES6, a `const` represents a constant reference to a value. In other words, the value is not frozen, just the assignment of it. Here's a simple example:
+Otra manera de crear declaraciones en el ámbito de bloque, es usar `const`, lo cual declara constantes. En ES6, una `const` representa una referencia constante a un valor. Es decir, la asignación a la misma está bloqueado, pero el valor puede cambiar. Aquí tenemos un ejemplo simple:
 
 ```javascript
 {
@@ -57,115 +49,117 @@ Another form of block-scoped declaration is the `const`, which creates constants
     ARR.push(7);
     console.log(ARR); // [5,6,7]
     ARR = 10; // TypeError: Assignment to constant variable
-    ARR[0] = 3; // value is mutable
+    ARR[0] = 3; // El valor es mutable
     console.log(ARR); // [3,6,7]
 }
 ```
 
-A few things to keep in mind:
+Unas cuantas cosas a tener en cuenta:
 
-* Hoisting of `let` and `const` vary from the traditional hoisting of variables and functions. Both `let` and `const` are hoisted, but cannot be accessed before their declaration, because of [Temporal Dead Zone](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified/) 
-* `let` and `const` are scoped to the nearest enclosing block.
-* When using `const`, use CAPITAL_CASING.
-* `const` has to be defined with its declaration.
+* El hoisting de `let` y `const` cambia con respecto al hoisting tradicional de variables y funciones. Tanto `let` como `const` son "elevadas" (hoisted), pero no son accesibles a causa de la [Temporal Dead Zone - ENG](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified/)
+* `let` y `const` están en el ámbito del bloque más cercano que las contiene.
+* Cuando uses `const`, usa LETRAS_MAYÚSCULAS.
+* A `const` hay que darle un valor cuando se declara.
 
 <br>
 
-### 2. Arrow Functions
+### 2. Funciones flecha
 
-Arrow Functions are a short-hand notation for writing functions in ES6. The arrow function definition consists of a parameter list `( ... )`, followed by the `=>` marker and a function body.
+Las funciones flecha son un atajo para escribir funciones en ES6. La definición de una función flecha consiste en una lista de parámetros `( ... )`, seguido del símbolo `=>` y seguido el cuerpo de la función.
 
 ```javascript
-let addition = function(a, b) {
+// Forma clásica
+let suma = function(a, b) {
     return a + b;
 };
 
-// Implementation with Arrow Function
-let addition = (a, b) => a + b;
+// Implementación con funcion flecha
+let suma = (a, b) => a + b;
 ```
-Note that in the above example, the `addition` arrow function is implemented with "concise body" which does not need an explicit return statement.
+Date cuenta que en el ejemplo anterior, la función flecha `suma` está implementada con una notación concisa en el cuerpo de la función, donde no necesitamos llave ({}) ni una declaración explícita con _return_.
 
-Here is an example with the usual "block body"
-
+Aquí tenemos un ejemplo con el cuerpo habitual de una función:
 ```javascript
-let arr = ['apple', 'banana', 'orange'];
+let arr = ['manzana', 'banana', 'naranja'];
 
-let breakfast = arr.map(fruit => {
-    return fruit + 's';
+let desayuno = arr.map(fruta => {
+    return fruta + 's';
 });
 
-console.log(breakfast); // ['apples', 'bananas', 'oranges']
+console.log(desayuno); // ['manzana', 'banana', 'naranja']
 ```
 
-**Behold! There is more...**
+**¡Espera! Todavía hay más...**
 
-Arrow functions don't just make the code shorter. They are closely related to `this` binding behavior.
+Las funciones flecha no solo hacen nuestro código más corto. Están muy relacionadas con el comportamiento de `this`.
 
-Arrow functions behavior with `this` keyword varies from that of normal functions. Each function in JavaScript defines its own `this` context but Arrow functions capture the `this` value of the enclosing context. Check out the following code:
+El comportamiento de la palabra clave `this` varía con respecto a las funciones normales. Cada función en Javascript define su propio contexto, al que hace referencia `this`, pero las funciones flecha capturan el valor de `this` del contexto que las contienen. Fíjate en el siguiente código:
+
 
 ```javascript
-function Person() {
-    // The Person() constructor defines `this` as an instance of itself.
-    this.age = 0;
+function Persona() {
+    // El constructor Persona() define `this` como una instancia de sí mismo
+    this.edad = 0;
 
-    setInterval(function growUp() {
-        // In non-strict mode, the growUp() function defines `this`
-        // as the global object, which is different from the `this`
-        // defined by the Person() constructor.
-        this.age++;
+    setInterval(function sumaEdad() {
+        // En modo no estricto, la función sumaEdad() define `this`
+        // como el objeto global, que es difente del `this` definido
+        // en el constructor de Persona()
+        this.edad++;
     }, 1000);
 }
-var p = new Person();
+var p = new Persona();
 ```
 
-In ECMAScript 3/5, this issue was fixed by assigning the value in `this` to a variable that could be closed over.
+En ECMAScript 3/5, este problema se resolvía guardando el valor de `this` en una variable.
 
 ```javascript
-function Person() {
+function Persona() {
     var self = this;
-    self.age = 0;
+    self.edad = 0;
 
-    setInterval(function growUp() {
-        // The callback refers to the `self` variable of which
-        // the value is the expected object.
-        self.age++;
+    setInterval(function sumaEdad() {
+        // La variable `self` contiene el valor
+        // de `this` esperado
+        self.edad++;
     }, 1000);
 }
 ```
 
-As mentioned above, Arrow functions capture the this value of the enclosing context, so the following code works as expected.
+Como se ha mencionado arriba, las funciones flecha capturan el valor de `this` del contexto que las contiene, por tanto el siguiente código funciona según lo previsto:
 
 ```javascript
-function Person() {
-    this.age = 0;
+function Persona() {
+    this.edad = 0;
 
     setInterval(() => {
-        this.age++; // `this` properly refers to the person object
+        // `this` se refiere correctamente al objeto persona
+        this.edad++;
     }, 1000);
 }
 
-var p = new Person();
+var p = new Persona();
 ```
-[Read more about 'Lexical this' in arrow functions here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#Lexical_this)
+[Lee más acerca del 'this léxico' en funciones flecha - ENG](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#Lexical_this)
 
 <br>
 
-### 3. Default Function Parameters
+### 3. Parámetros de funciones por defecto
 
-ES6 allows you to set default parameters in function definitions. Here is a simple illustration.
+ES6 te permite asignar valores por defecto a los parámetros en la definición de las funciones. Aquí un ejemplo:
 
 ```javascript
-let getFinalPrice = (price, tax = 0.7) => price + price * tax;
-getFinalPrice(500); // 850
+let obtenerPrecioFinal = (precio, tasas = 0.7) => precio + precio * tasas;
+obtenerPrecioFinal(500); // 850
 ```
 
 <br>
 
-### 4. Spread / Rest Operator
+### 4. Operador de propagación/soporte
 
-`...` operator is referred to as spread or rest operator, depending on how and where it is used.
+El operador `...` se llama operador de propagación (spread) o de soporte (rest), dependiendo de como se use.
 
-When used with any iterable, it acts as to "spread" it into individual elements:
+Cuando se usa con cualquier iterable actúa como operador de propagación, expandiendo el iterable en elementos individuales:
 
 ```javascript
 function foo(x, y, z) {
@@ -176,7 +170,7 @@ let arr = [1, 2, 3];
 foo(...arr); // 1 2 3
 ```
 
-The other common usage of `...` is gathering a set of values together into an array. This is referred as "rest" operator.
+El otro uso común de `...` es agrupar un conjunto de valores en un array. En este caso se le llama operador de soporte:
 
 ```javascript
 function foo(...args) {
@@ -187,64 +181,63 @@ foo(1, 2, 3, 4, 5); // [1, 2, 3, 4, 5]
 
 <br>
 
-### 5. Object Literal Extensions
+### 5. Extensión de objetos literales
 
-ES6 allows declaring object literals by providing shorthand syntax for initializing properties from variables and defining function methods. It also enables the ability to have computed property keys in an object literal definition.
+ES6 permite declarar objetos literales a través de una sintaxis compacta. Se pueden inicializar propiedades directamente de variables, y definir funciones de manera ágil. Esta sintaxis, también nos da la posibilidad de definir claves del objeto calculadas. Ejemplo:
 
 ```javascript
-function getCar(make, model, value) {
+function getCar(marca, modelo, precio) {
     return {
-        // with property value shorthand
-        // syntax, you can omit the property
-        // value if key matches variable
-        // name
-        make,  // same as make: make
-        model, // same as model: model
-        value, // same as value: value
+        // Podemos omitir el valor de la
+        // propiedad, si coincide con
+        // el nombre de la variable
+        marca,  // igual que marca: marca
+        modelo, // igual que modelo: modelo
+        precio, // igual que precio: precio
 
-        // computed values now work with
-        // object literals
-        ['make' + make]: true,
+        // claves calculadas
+        ['marca' + marca]: true,
 
-        // Method definition shorthand syntax
-        // omits `function` keyword & colon
-        depreciate() {
-            this.value -= 2500;
+        // Podemos omitir la clave,
+        // la palabra `function` y
+        // los dos puntos
+        bajarPrecio() {
+            this.precio -= 2500;
         }
     };
 }
 
-let car = getCar('Kia', 'Sorento', 40000);
-console.log(car);
+let coche = getCar('Kia', 'Sorento', 40000);
+console.log(coche);
 // {
-//     make: 'Kia',
-//     model:'Sorento',
-//     value: 40000,
+//     marca: 'Kia',
+//     modelo:'Sorento',
+//     precio: 40000,
 //     makeKia: true,
-//     depreciate: function()
+//     bajarPrecio: function()
 // }
 ```
 
 <br>
 
-### 6. Octal and Binary Literals
+### 6. Literales Octales y Binarios
 
-ES6 has new support for octal and binary literals.
-Prependending a number with `0o` or `0O` would convert it into octal value. Have a look at the following code:
+ES6 tiene soporte para literales octales y binarios.
+Poniendo delante del número `0o` or `0O`, lo convierte en octal, y `0b` or `0B` en binario. Ejemplo:
 
 ```javascript
-let oValue = 0o10;
+let oValue = 0o10; // 0o o 0O para octal
 console.log(oValue); // 8
 
-let bValue = 0b10; // 0b or 0B for binary
+let bValue = 0b10; // 0b o 0B para binario
 console.log(bValue); // 2
 ```
 
 <br>
 
-### 7. Array and Object Destructuring
+### 7. Desestructuración de Arrays y Objetos
 
-Destructuring helps in avoiding the need for temp variables when dealing with object and arrays.
+La destructuración nos evita la necesidad de variables temporales cuando trabajamos con objetos y arrays.
 
 ```javascript
 function foo() {
@@ -268,66 +261,67 @@ console.log(a, b, c); // 4 5 6
 
 <br>
 
-### 8. super in Objects
+### 8. super en Objetos
 
-ES6 allows to use `super` method in (classless) objects with prototypes. Following is a simple example:
+ES6 nos permite usar el método `super` en objetos (sin clase) con prototipos. Aquí podemos ver un ejemplo:
 
 ```javascript
-var parent = {
+var padre = {
     foo() {
-        console.log("Hello from the Parent");
+        console.log("Hola desde el padre");
     }
 }
 
-var child = {
+var hijo = {
     foo() {
         super.foo();
-        console.log("Hello from the Child");
+        console.log("Hola desde el hijo");
     }
 }
 
-Object.setPrototypeOf(child, parent);
-child.foo(); // Hello from the Parent
-             // Hello from the Child
+Object.setPrototypeOf(hijo, padre);
+hijo.foo(); // Hola desde el padre
+             // Hola desde el hijo
 ```
 
 <br>
 
-### 9. Template Literal and Delimiters
+### 9. Plantillas de Literales y Delimitadores
 
-ES6 introduces an easier way to add interpolation which are evaluated automatically.
+ES6 introduce una manera más sencilla de interpolación, donde los valores son evaluado automáticamente.
 
-* <code>\`${ ... }\`</code> is used for rendering the variables.
-* <code>\`</code> Backtick is used as delimiter.
+* <code>\`${ ... }\`</code> se usa para renderizar variables.
+* <code>\`</code> La comilla invertida se usa como delimitador.
 
 ```javascript
-let user = 'Kevin';
-console.log(`Hi ${user}!`); // Hi Kevin!
+let usuario = 'Kevin';
+console.log(`Hola ${usuario}!`); // Hola Kevin!
 ```
 
 <br>
 
 ### 10. for...of vs for...in
-* `for...of` iterates over iterable objects, such as array.
+
+* `for...of` itera sobre cualquier iterable.
 
 ```javascript
-let nicknames = ['di', 'boo', 'punkeye'];
-nicknames.size = 3;
-for (let nickname of nicknames) {
-    console.log(nickname);
+let nombres = ['di', 'boo', 'punkeye'];
+nombres.size = 3;
+for (let nombre of nombres) {
+    console.log(nombre);
 }
 // di
 // boo
 // punkeye
 ```
 
-* `for...in` iterates over all enumerable properties of an object.
+* `for...in` itera sobre todas las propiedades enumerables de una objeto.
 
 ```javascript
-let nicknames = ['di', 'boo', 'punkeye'];
-nicknames.size = 3;
-for (let nickname in nicknames) {
-    console.log(nickname);
+let nombres = ['di', 'boo', 'punkeye'];
+nombres.size = 3;
+for (let nombre in nombres) {
+    console.log(nombre);
 }
 // 0
 // 1
@@ -337,39 +331,39 @@ for (let nickname in nicknames) {
 
 <br>
 
-### 11. Map and WeakMap
+### 11. Map y WeakMap
 
-ES6 introduces new set of data structures called `Map` and `WeakMap`. Now, we actually use maps in JavaScript all the time. In fact every object can be considered as a `Map`.
+ES6 introduce un nuevo conjunto de estructuras de datos, `Map` y `WeakMap`. Ahora mismo ya estamos usando Maps en JavaScript todo el tiempo. De hecho, cada objeto puede ser considerado un `Map`.
 
-An object is made of keys (always strings) and values, whereas in `Map`, any value (both objects and primitive values) may be used as either a key or a value. Have a look at this piece of code:
+Un objeto esta compuesto de claves (siempre cadenas) y valores, donde en un `Map`, cualquier valor (ya sean objetos o valores primitivos) puede ser usados como clave o valor. Mira el siguiente código:
 
 ```javascript
 var myMap = new Map();
 
-var keyString = "a string",
+var keyString = "una cadena",
     keyObj = {},
     keyFunc = function() {};
 
-// setting the values
-myMap.set(keyString, "value associated with 'a string'");
-myMap.set(keyObj, "value associated with keyObj");
-myMap.set(keyFunc, "value associated with keyFunc");
+// Asignamos los valores
+myMap.set(keyString, "valor asociado con 'una cadena'");
+myMap.set(keyObj, "valor asociado con keyObj");
+myMap.set(keyFunc, "valor asociado keyFunc");
 
 myMap.size; // 3
 
 // getting the values
-myMap.get(keyString);    // "value associated with 'a string'"
-myMap.get(keyObj);       // "value associated with keyObj"
-myMap.get(keyFunc);      // "value associated with keyFunc"
+myMap.get(keyString);    // "valor asociado con 'una cadena'"
+myMap.get(keyObj);       // "valor asociado con keyObjj"
+myMap.get(keyFunc);      // "valor asociado keyFunc"
 ```
 
 **WeakMap**
 
-A `WeakMap` is a Map in which the keys are weakly referenced, that doesn’t prevent its keys from being garbage-collected. That means you don't have to worry about memory leaks.
+Un `WeakMap` es un Map donde las claves esta referenciadas de forma débil, lo que no previene que sus claves sean recolectadas por el recoletor de basura. Eso significa que no te tienes que preocupar por fugas de memoria.
 
-Another thing to note here- in `WeakMap` as opposed to `Map` *every key must be an object*.
+Otra cosa a tener en cuenta, en `WeakMap`, al contrario que en `Map`, *las claves deben ser un objeto*.
 
-A `WeakMap` only has four methods `delete(key)`, `has(key)`, `get(key)` and `set(key, value)`.
+Un `WeakMap` solo tiene cuatro métodos `delete(key)`, `has(key)`, `get(key)` y `set(key, value)`.
 
 ```javascript
 let w = new WeakMap();
@@ -384,7 +378,7 @@ w.set(o1, 37);
 w.set(o2, "azerty");
 w.set(o3, undefined);
 
-w.get(o3); // undefined, because that is the set value
+w.get(o3); // undefined, porque es el valor que hemos asignado
 
 w.has(o1); // true
 w.delete(o1);
@@ -393,9 +387,9 @@ w.has(o1); // false
 
 <br>
 
-### 12. Set and WeakSet
+### 12. Set y WeakSet
 
-Set objects are collections of unique values. Duplicate values are ignored, as the collection must have all unique values. The values can be primitive types or object references.
+Los objetos `Set` son colecciones de valores únicos. Los valores duplicados son ignorados, ya que la colección solo puede tener valores únicos. Los valores puede ser primitivos o referencias a objetos.
 
 ```javascript
 let mySet = new Set([1, 1, 2, 2, 3, 3]);
@@ -405,7 +399,8 @@ mySet.add('strings');
 mySet.add({ a: 1, b:2 });
 ```
 
-You can iterate over a set by insertion order using either the `forEach` method or the `for...of` loop.
+Puedes iterar sobre un Set o bien usando el método `forEach` o el bucle `for...of`.
+
 
 ```javascript
 mySet.forEach((item) => {
@@ -426,11 +421,12 @@ for (let value of mySet) {
     // Object { a: 1, b: 2 }
 }
 ```
-Sets also have the `delete()` and `clear()` methods.
+
+Sets tambien tienen los métodos `delete()` y `clear()`.
 
 **WeakSet**
 
-Similar to `WeakMap`, the `WeakSet` object lets you store weakly held *objects* in a collection. An object in the `WeakSet` occurs only once; it is unique in the WeakSet's collection.
+Similar a `WeakMap`, y `WeakSet` almacena solo objetos y de manera débil. Un objeto en `WeakSet` solo está una vez ya que es único en la colección.
 
 ```javascript
 var ws = new WeakSet();
@@ -441,115 +437,115 @@ ws.add(window);
 ws.add(obj);
 
 ws.has(window); // true
-ws.has(foo);    // false, foo has not been added to the set
+ws.has(foo);    // false, foo todavía no se ha añadio al set
 
-ws.delete(window); // removes window from the set
-ws.has(window);    // false, window has been removed
+ws.delete(window); // se quita window del set
+ws.has(window);    // false, window ya no está en el set
 ```
 
 <br>
 
-### 13. Classes in ES6
+### 13. Clases en ES6
 
-ES6 introduces new class syntax. One thing to note here is that ES6 class is not a new object-oriented inheritance model. They just serve as a syntactical sugar over JavaScript's existing prototype-based inheritance.
+ES6 introduce una nueva sintaxis para clases. Hay que tener en consideración que las clases en ES6 no define un nuevo modelo de herencia orientada a objetos. Simplemente sirve como azucar sintáctico sobre la existente herencia basada en prototipos de JavaScript.
 
-One way to look at a class in ES6 is just a new syntax to work with prototypes and contructor functions that we'd use in ES5.
+Una manera de ver las clases en ES6, es considerarlas una nueva manera de trabajar con prototipos y funciones constructoras tal como haríamos con ES5.
 
-Functions defined using the `static` keyword implement static/class functions on the class.
+Funciones definidas usando la palabra `static` implementan funciones estática en la clase.
+
 
 ```javascript
-class Task {
+class Tarea {
     constructor() {
-        console.log("task instantiated!");
+        console.log("Tarea instanciada!");
     }
-    
-    showId() {
+
+    mostrarId() {
         console.log(23);
     }
-    
-    static loadAll() {
-        console.log("Loading all tasks..");
+
+    static cargarTodas() {
+        console.log("Cargando tareas..");
     }
 }
 
-console.log(typeof Task); // function
-let task = new Task(); // "task instantiated!"
-task.showId(); // 23
-Task.loadAll(); // "Loading all tasks.."
+console.log(typeof Tarea); // function
+let task = new Tarea(); // "Tarea instanciada!"
+task.mostrarId(); // 23
+task.cargarTodas(); // "Cargando tareas.."
 ```
 
-**extends and super in classes**
+**extends y super en clases**
 
-Consider the following code:
+Tenemos el siguiente código:
 
 ```javascript
-class Car {
+class Coche {
     constructor() {
-        console.log("Creating a new car");
+        console.log("Creando un nuevo coche");
     }
 }
 
-class Porsche extends Car {
+class Porsche extends Coche {
     constructor() {
         super();
-        console.log("Creating Porsche");
+        console.log("Creando un Porsche");
     }
 }
 
 let c = new Porsche();
-// Creating a new car
-// Creating Porsche
+// Creando un nuevo coche
+// Creando un Porsche
 ```
 
-`extends` allow child class to inherit from parent class in ES6. It is important to note that the derived constructor must call super().
+`extends` permite a clases hijas heredar de clases padres en ES6. Es importante decir, que el constructor derivado debe llamar a super().
 
-Also, you can call parent class's method in child class's methods using `super.parentMethodName()`
+Además, también puedes llamar a un método del padre desde una clase hija usando `super.metodoDelPadre()`
 
-[Read more about classes here](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
+[Lee más sobre clases en ES6 - ENG](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
 
-A few things to keep in mind:
+Un par de cosas a tener en cuenta:
 
-* Class declarations are not hoisted. You first need to declare your class and then access it, otherwise ReferenceError will be thrown.
-* There is no need to use `function` keyword when defining functions inside a class definition.
+* Las declaraciones de clases no son elevadas (hoisted). Primero tiene que declarar la clase y despues usarla, si no se obtendrá un ReferenceError
+* No hay necesidad de usar la palabra `function` cuando se define un método dentro de una clase.
 
 <br>
 
 ### 14. Symbol
 
-A symbol is a unique and immutable data type introduced in ES6. The purpose of a symbol is to generate a unique identifier but you can never get any access to that identifier.
+Un `symbol`, es un tipo de dato único e inmutable nuevo en ES6. El propósito de symbol es generar un identificador único, aunque no puedes acceder a ese identificador.
 
-Here’s how you create a symbol:
+Así es como creas un symbol:
 
 ```javascript
-var sym = Symbol("some optional description");
+var sym = Symbol("descripción opcional");
 console.log(typeof sym); // symbol
 ```
 
-Note that you cannot use `new` with `Symbol(…)`.
+Date cuenta que no puedes usar `new` con `Symbol(...)`.
 
-If a symbol is used as a property/key of an object, it’s stored in a special way that the property will not show up in a normal enumeration of the object’s properties.
+Si un symbol es usado como una propiedad/clave de un objeto, se guarda de una manera especial, de tal manera que la propiedad no se mostrará de manera habitual cuando se enumeren las propiedades del objeto.
 
 ```javascript
 var o = {
     val: 10,
-    [Symbol("random")]: "I'm a symbol",
+    [Symbol("random")]: "Soy un symbol",
 };
 
 console.log(Object.getOwnPropertyNames(o)); // val
 ```
 
-To retrieve an object’s symbol properties, use `Object.getOwnPropertySymbols(o)`
-
+Para obtener los symbols de un objeto, usa `Object.getOwnPropertySymbols(o)`.
 
 <br>
 
-### 15. Iterators
+### 15. Iteradores
 
-An iterator accesses the items from a collection one at a time, while keeping track of its current position within that sequence. It provides a `next()` method which returns the next item in the sequence. This method returns an object with two properties: done and value.
+Un iterador accede a los elementos de una colección uno por uno, a la vez que guarda la posición actual en la secuencia. Expone el método `next()` que devuelve el siguiente elemento de la secuencia. Este método devuelve un objeto con dos propiedades: done y value.
 
-ES6 has `Symbol.iterator` which specifies the default iterator for an object. Whenever an object needs to be iterated (such as at the beginning of a for..of loop), its @@iterator method is called with no arguments, and the returned iterator is used to obtain the values to be iterated.
+ES6 tiene `Symbol.iterator`, el cual especifica el iterador por defecto para un objeto. Cuando un objeto necesita ser iterado (por ejemplo al principio de un bucle for..of), su método @@iterador es llamado sin argumentos, y el iterador que devuelve se usa para obtener los valores a ser iterados.
 
-Let’s look at an array, which is an iterable, and the iterator it can produce to consume its values:
+Vamos a ver un array, que es un iterable, y el iterador que puede producir para consumir sus valores:
 
 ```javascript
 var arr = [11,12,13];
@@ -562,82 +558,83 @@ itr.next(); // { value: 13, done: false }
 itr.next(); // { value: undefined, done: true }
 ```
 
-Note that you can write custom iterators by defining `obj[Symbol.iterator]()` with the object definition.
+Date cuenta que puede escribir tu propio iterador definiendo `obj[Symbol.iterator]()` en la definición del objeto.
 
 <br>
 
-### 16. Generators
+### 16. Generadores
 
-Generator functions are a new feature in ES6 that allow a function to generate many values over time by returning an object which can be iterated over to pull values from the function one value at a time.
+Las funciones generadoras son una nueva funcionalidad en ES6 que permite a una función generar varios valores a lo largo del tiempo, devolviendo un objeto que puede ser iterado para obtener valores uno por uno.
 
-A generator function returns an **iterable object** when it's called.
-It is written using the new `*` syntax as well as the new `yield` keyword introduced in ES6.
+Una función generadora devuelve un **objeto iterable** cuando es llamada.
+
+Se declara escribiendo la nueva sintaxis con `*` y `yield`, introducidos en ES6.
 
 ```javascript
-function *infiniteNumbers() {
+function *numerosInfinitos() {
     var n = 1;
     while (true) {
         yield n++;
     }
 }
 
-var numbers = infiniteNumbers(); // returns an iterable object
+var numbers = numerosInfinitos(); // Devuelve un objeto iterador
 
 numbers.next(); // { value: 1, done: false }
 numbers.next(); // { value: 2, done: false }
 numbers.next(); // { value: 3, done: false }
 ```
+Cada vez que se ejecuta yield, el valor con el que se llama se convierte en el siguiente valor de la secuencia.
 
-Each time yield is called, the yielded value becomes the next value in the sequence.
-
-Also, note that generators compute their yielded values on demand, which allows them to efficiently represent sequences that are expensive to compute, or even infinite sequences.
+Date cuenta que los generadores calculan los valores bajo demanda, lo que permite representar secuencias que son costosas de calcular (incluso infintas) de manera eficiente.
 
 <br>
 
-### 17. Promises
+### 17. Promesas
 
-ES6 has native support for promises. A promise is an object that is waiting for an asynchronous operation to complete, and when that operation completes, the promise is either fulfilled(resolved) or rejected.
+ES6 tiene soporte nativo para promesas. Una promesa es un objeto que está esperando a que una operación asíncrona termine, y cuando la operación termine, la promesa estará resuelta o rechazada.
 
-The standard way to create a Promise is by using the `new Promise()` constructor which accepts a handler that is given two functions as parameters. The first handler (typically named `resolve`) is a function to call with the future value when it's ready; and the second handler (typically named `reject`) is a function to call to reject the Promise if it can't resolve the future value.
+La manera estandar de crear una promesa es ejecutando el constructo `new Promise()`, que acepta un callback que tiene dos funciones como parámetro. El primer parámetro (normalmente se le llama `resolve`) es la función que hay que llamar en el futuro cuando el valor esté listo, y el segundo parámetro (nomalmente llamado `reject`) es la funcion que hay que llamar para rechazar la promesa, si no se puede resolver la operación que estamos operando.
 
 ```javascript
-var p = new Promise(function(resolve, reject) {  
-    if (/* condition */) {
-        resolve(/* value */);  // fulfilled successfully
+var p = new Promise(function(resolve, reject) {
+    if (/* condicion */) {
+        resolve(/* value */);  // Todo OK
     } else {
-        reject(/* reason */);  // error, rejected
+        reject(/* reason */);  // error, rechazada
     }
 });
 ```
 
-Every Promise has a method named `then` which takes a pair of callbacks. The first callback is called if the promise is resolved, while the second is called if the promise is rejected.
+Todas las promesas tienen un método llamada `then`, que recibe dos callbacks. El primero se llama si la promesa ha sido resuelta, y el segundo cuando la promesa ha sido rechazada.
+
 
 ```javascript
-p.then((val) => console.log("Promise Resolved", val),
-       (err) => console.log("Promise Rejected", err));
+p.then((val) => console.log("Promesa resuelta", val),
+       (err) => console.log("Promesa rechazada", err));
 ```
 
-Returning a value from `then` callbacks will pass the value to the next `then` callback.
+Devolver un valor desde un callback de `then`, pasará el valor al siguiente callback.
+
 
 ```javascript
-var hello = new Promise(function(resolve, reject) {  
-    resolve("Hello");
+var hello = new Promise(function(resolve, reject) {
+    resolve("Hola");
 });
 
-hello.then((str) => `${str} World`)
+hello.then((str) => `${str} Mundo`)
      .then((str) => `${str}!`)
-     .then((str) => console.log(str)) // Hello World!
+     .then((str) => console.log(str)) // Hola Mundo!
 ```
 
-When returning a promise, the resolved value of the promise will get passed to the next callback to effectively chain them together.
-This is a simple technique to avoid "callback hell".
+Cuando se devuelve una promesa, el valor resuelto de la promesa se pasará al siguiente callback. Eso permite encadenarlos correctamente. Es un técnica sencilla para evitar el "callback hell"
 
 ```javascript
-var p = new Promise(function(resolve, reject) {  
+var p = new Promise(function(resolve, reject) {
     resolve(1);
 });
 
-var eventuallyAdd1 = (val) => {
+var suma1 = (val) => {
     return new Promise(function(resolve, reject){
         resolve(val + 1);
     });
