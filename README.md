@@ -301,7 +301,7 @@ child.foo(); // Hello from the Parent
 
 ### 9. Template Literal and Delimiters
 
-ES6 introduces an easier way to add interpolation which are evaluated automatically.
+ES6 introduces an easier way to add interpolations which are evaluated automatically.
 
 * <code>\`${ ... }\`</code> is used for rendering the variables.
 * <code>\`</code> Backtick is used as delimiter.
@@ -401,7 +401,7 @@ w.has(o1); // false
 
 ### 12. Set and WeakSet
 
-Set objects are collections of unique values. Duplicate values are ignored, as the collection must have all unique values. The values can be primitive types or object references.
+*Set* objects are collections of unique values. Duplicate values are ignored, as the collection must have all unique values. The values can be primitive types or object references.
 
 ```javascript
 let mySet = new Set([1, 1, 2, 2, 3, 3]);
@@ -507,7 +507,7 @@ let c = new Porsche();
 // Creating Porsche
 ```
 
-`extends` allow child class to inherit from parent class in ES6. It is important to note that the derived constructor must call super().
+`extends` allow child class to inherit from parent class in ES6. It is important to note that the derived constructor must call `super()`.
 
 Also, you can call parent class's method in child class's methods using `super.parentMethodName()`
 
@@ -522,7 +522,7 @@ A few things to keep in mind:
 
 ### 14. Symbol
 
-A symbol is a unique and immutable data type introduced in ES6. The purpose of a symbol is to generate a unique identifier but you can never get any access to that identifier.
+A `Symbol` is a unique and immutable data type introduced in ES6. The purpose of a symbol is to generate a unique identifier but you can never get any access to that identifier.
 
 Here’s how you create a symbol:
 
@@ -553,7 +553,7 @@ To retrieve an object’s symbol properties, use `Object.getOwnPropertySymbols(o
 
 An iterator accesses the items from a collection one at a time, while keeping track of its current position within that sequence. It provides a `next()` method which returns the next item in the sequence. This method returns an object with two properties: done and value.
 
-ES6 has `Symbol.iterator` which specifies the default iterator for an object. Whenever an object needs to be iterated (such as at the beginning of a for..of loop), its @@iterator method is called with no arguments, and the returned iterator is used to obtain the values to be iterated.
+ES6 has `Symbol.iterator` which specifies the default iterator for an object. Whenever an object needs to be iterated (such as at the beginning of a for..of loop), its *@@iterator* method is called with no arguments, and the returned iterator is used to obtain the values to be iterated.
 
 Let’s look at an array, which is an iterable, and the iterator it can produce to consume its values:
 
@@ -594,7 +594,7 @@ numbers.next(); // { value: 2, done: false }
 numbers.next(); // { value: 3, done: false }
 ```
 
-Each time yield is called, the yielded value becomes the next value in the sequence.
+Each time *yield* is called, the yielded value becomes the next value in the sequence.
 
 Also, note that generators compute their yielded values on demand, which allows them to efficiently represent sequences that are expensive to compute, or even infinite sequences.
 
@@ -602,7 +602,7 @@ Also, note that generators compute their yielded values on demand, which allows 
 
 ### 17. Promises
 
-ES6 has native support for promises. A promise is an object that is waiting for an asynchronous operation to complete, and when that operation completes, the promise is either fulfilled(resolved) or rejected.
+ES6 has native support for promises. A *promise* is an object that is waiting for an asynchronous operation to complete, and when that operation completes, the promise is either fulfilled(resolved) or rejected.
 
 The standard way to create a Promise is by using the `new Promise()` constructor which accepts a handler that is given two functions as parameters. The first handler (typically named `resolve`) is a function to call with the future value when it's ready; and the second handler (typically named `reject`) is a function to call to reject the Promise if it can't resolve the future value.
 
