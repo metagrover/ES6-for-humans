@@ -180,7 +180,7 @@ let arr = [1, 2, 3];
 foo(...arr); // 1 2 3
 ```
 
-L'autre usage commun de `...` est la collecte d'un ensemble de valeurs contenu dans un tableau ou un object. Dans ce cas, il agit en tant qu'opérateur «de repos».
+L'autre usage commun de `...` est la collecte d'un ensemble de valeurs contenu dans un tableau. Dans ce cas, il agit en tant qu'opérateur «de repos».
 
 ```javascript
 function foo(...args) {
