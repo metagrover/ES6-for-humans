@@ -4,19 +4,19 @@
 
 ### Table of Contents
 
-* [`let`, `const` and block scoping](#1-let-const-and-block-scoping)
-* [Arrow Functions](#2-arrow-functions)
-* [Default Function Parameters](#3-default-function-parameters)
-* [Spread/Rest Operator](#4-spread--rest-operator)
-* [Object Literal Extensions](#5-object-literal-extensions)
-* [Octal and Binary Literals](#6-octal-and-binary-literals)
-* [Array and Object Destructuring](#7-array-and-object-destructuring)
-* [super in Objects](#8-super-in-objects)
-* [Template Literal and Delimiters](#9-template-literal-and-delimiters)
+* [`let`, `const` と ブロックスコープ](#1-let-const-and-block-scoping)
+* [アロー関数](#2-arrow-functions)
+* [関数のデフォルトパラメーター](#3-default-function-parameters)
+* [スプレッド演算子　／レスト演算子](#4-spread--rest-operator)
+* [オブジェクトリテラルの拡張](#5-object-literal-extensions)
+* [８進数と２進数リテラル](#6-octal-and-binary-literals)
+* [配列とオブジェクトの分解](#7-array-and-object-destructuring)
+* [オブジェクトにおける`super`の使用](#8-super-in-objects)
+* [テンプレートリテラルとデリミタ](#9-template-literal-and-delimiters)
 * [for...of vs for...in](#10-forof-vs-forin)
-* [Map and WeakMap](#11-map-and-weakmap)
-* [Set and WeakSet](#12-set-and-weakset)
-* [Classes in ES6](#13-classes-in-es6)
+* [Map と WeakMap](#11-map-and-weakmap)
+* [Set と WeakSet](#12-set-and-weakset)
+* [ES6のクラス](#13-classes-in-es6)
 * [Symbol](#14-symbol)
 * [Iterators](#15-iterators)
 * [Generators](#16-generators)
@@ -24,20 +24,21 @@
 
 <br>
 
-### Languages
+### 他言語
 
-* [Chinese Version (Thanks to barretlee)](http://www.barretlee.com/blog/2016/07/09/a-kickstarter-guide-to-writing-es6/)
-* [Portuguese Version (Thanks to alexmoreno)](https://github.com/alexmoreno/ES6-para-humanos)
-* [Russian Version (Thanks to etnolover)](https://github.com/etnolover/ES6-for-humans-translation)
-* [Korean Version (Thanks to scarfunk)](https://github.com/metagrover/ES6-for-humans/tree/korean-version)
-* [French Version (Thanks to tnga)](https://github.com/metagrover/ES6-for-humans/tree/french-version)
-* [Spanish Version (Thanks to carletex)](https://github.com/metagrover/ES6-for-humans/tree/spanish-version)
+* [中国語 (Thanks to barretlee)](http://www.barretlee.com/blog/2016/07/09/a-kickstarter-guide-to-writing-es6/)
+* [ポルトガル語 (Thanks to alexmoreno)](https://github.com/alexmoreno/ES6-para-humanos)
+* [ロシア語 (Thanks to etnolover)](https://github.com/etnolover/ES6-for-humans-translation)
+* [韓国語 (Thanks to scarfunk)](https://github.com/metagrover/ES6-for-humans/tree/korean-version)
+* [フランス語 (Thanks to tnga)](https://github.com/metagrover/ES6-for-humans/tree/french-version)
+* [スペイン語 (Thanks to carletex)](https://github.com/metagrover/ES6-for-humans/tree/spanish-version)
 
 <br>
 
-### 1. let, const and block scoping
+### 1. let, const と ブロックスコープ
 
-`let` allows you to create declarations which are bound to any block, called block scoping. Instead of using `var`, which provides function scope, it is recommended to use `let` in ES6.
+宣言文 `let` はブロックスコープと呼ばれるブロックを作ることが出来ます。
+ES6では、関数スコープで使用していた`var` の代わりに、`let`の使用が推奨されています。
 
 ```javascript
 var a = 2;
@@ -49,7 +50,8 @@ var a = 2;
 console.log(a); // 2
 ```
 
-Another form of block-scoped declaration is the `const`, which creates constants. In ES6, a `const` represents a constant reference to a value. In other words, the value is not frozen, just the assignment of it. Here's a simple example:
+ブロックスコープにおけるもう一つの宣言文は `const` です。`const` は定数を生成します。
+ES6の`const`は、値への参照を示す事になります。言い換えれば、この値は凍結されるわけではなく、割り当てているだけなのです。例を見て下さい。
 
 ```javascript
 {
@@ -60,36 +62,36 @@ Another form of block-scoped declaration is the `const`, which creates constants
     ARR.push(7);
     console.log(ARR); // [5,6,7]
     ARR = 10; // TypeError: Assignment to constant variable
-    ARR[0] = 3; // value is mutable
+    ARR[0] = 3; // 値は変更可能
     console.log(ARR); // [3,6,7]
 }
 ```
 
-A few things to keep in mind:
-
-* Hoisting of `let` and `const` vary from the traditional hoisting of variables and functions. Both `let` and `const` are hoisted, but cannot be accessed before their declaration, because of [Temporal Dead Zone](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified/) 
-* `let` and `const` are scoped to the nearest enclosing block.
-* When using `const`, use CAPITAL_CASING (this is a common convention).
-* `const` has to be defined with its declaration.
+頭の片隅に覚えていてほしいこと:
+* `let`、`const`のホイスティングは今までの変数、関数のホイスティングから様変わりしました。`let`も`const`もどちらも、巻き上げるが、その宣言の前にアクセスすることは出来ません。これは、[Temporal Dead Zone(英語)](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified/)のためです。
+* `let`と`const`のスコープは最も近い閉じたブロックになります。
+* `const`を使用する際は、大文字で記述して下さい(一般的な慣習でもあります)
+* `const`は宣言すると同時に定義しなければならなりません。
 
 <br>
 
-### 2. Arrow Functions
+### 2. アロー関数
 
-Arrow functions are a short-hand notation for writing functions in ES6. The arrow function definition consists of a parameter list `( ... )`, followed by the `=>` marker and a function body.
+アロー関数はES6で関数を書く際の短縮表記のことです。アロー関数は`=>`に続く関数本体と、`(...)`で表される引数の一覧で定義します。
 
 ```javascript
-// Classical Function Expression
+// クラシカルな関数式
 let addition = function(a, b) {
     return a + b;
 };
 
-// Implementation with arrow function
+// アロー関数で実装
 let addition = (a, b) => a + b;
 ```
-Note that in the above example, the `addition` arrow function is implemented with "concise body" which does not need an explicit return statement.
 
-Here is an example with the usual "block body"
+上記の例に加えて、アロー関数では`return`文を書く必要がありません。関数本体を簡潔に実装するためです。
+
+これが通常のブロックで関数を記述した例です。
 
 ```javascript
 let arr = ['apple', 'banana', 'orange'];
@@ -101,28 +103,28 @@ let breakfast = arr.map(fruit => {
 console.log(breakfast); // ['apples', 'bananas', 'oranges']
 ```
 
-**Behold! There is more...**
+**ちょっと待って！　もう一つ...**
 
-Arrow functions don't just make the code shorter. They are closely related to `this` binding behavior.
+アロー関数はコードそのものを短くするわけではありません。`this`を束縛する行為と密接に関係しています。
 
-Arrow functions behavior with `this` keyword varies from that of normal functions. Each function in JavaScript defines its own `this` context but arrow functions capture the `this` value of the nearest enclosing context. Check out the following code:
+アロー関数の動作は、`this`の動きとともに通常の関数とは異なります。JavaScriptにおける其々の関数は`this`の文脈を定義できます。しかし、アロー関数が捉える`this`は、閉じた文脈となります。次のコードを見てください。
 
 ```javascript
 function Person() {
-    // The Person() constructor defines `this` as an instance of itself.
+    // Person()コンストラクターが定義する`this`はインスタンスそのものだ
     this.age = 0;
 
     setInterval(function growUp() {
-        // In non-strict mode, the growUp() function defines `this`
-        // as the global object, which is different from the `this`
-        // defined by the Person() constructor.
+        // strict mode　ではない時、 grouUp() 関数は `this` を 
+        // globalオブジェクトとして定義する。Person()コンストラクターが定義した`this`
+        // とは異なる
         this.age++;
     }, 1000);
 }
 var p = new Person();
 ```
 
-In ECMAScript 3/5, this issue was fixed by assigning the value in `this` to a variable that could be closed over.
+ES3,ES5において、以上の事案に対してはthisを変数に割り当てることで対応してきました。
 
 ```javascript
 function Person() {
@@ -130,14 +132,13 @@ function Person() {
     self.age = 0;
 
     setInterval(function growUp() {
-        // The callback refers to the `self` variable of which
-        // the value is the expected object.
+        // コールバックが参照する`self`変数は想定しているオブジェクトを指し示す
         self.age++;
     }, 1000);
 }
 ```
 
-As mentioned above, arrow functions capture the this value of the nearest enclosing context, so the following code works as expected, even with nested arrow functions.
+上記から、アロー関数は`this`の値を最も近い閉じた文脈を捉えることができるため、ネストしたアロー関数に対しても、以下のコードのように想定通りの動きをすることになります。
 
 ```javascript
 function Person() {
@@ -145,20 +146,20 @@ function Person() {
 
     setInterval(() => {
         setTimeout(() => {
-            this.age++; // `this` properly refers to the person object
+            this.age++; //　`this` は適切にpersonオブジェクトを参照する
         }, 1000);
     }, 1000);
 }
 
 var p = new Person();
 ```
-[Read more about 'Lexical this' in arrow functions here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#Lexical_this)
+[アロー関数内の`Lexical this`についてよく知りたければ参照](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#Lexical_this)
 
 <br>
 
-### 3. Default Function Parameters
+### 3. 関数のデフォルトパラメーター
 
-ES6 allows you to set default parameters in function definitions. Here is a simple illustration.
+ES6では関数定義時にでデフォルトパラメーターを設定することができます。実例をみてください。
 
 ```javascript
 let getFinalPrice = (price, tax = 0.7) => price + price * tax;
@@ -167,11 +168,11 @@ getFinalPrice(500); // 850
 
 <br>
 
-### 4. Spread / Rest Operator
+### 4. スプレッド演算子　／レスト演算子
 
-`...` operator is referred to as spread or rest operator, depending on how and where it is used.
+`...` 演算子はスプレッド演算子、またはレスト演算子をとして動きます。使用の仕方によって動きが異なります。
 
-When used with any iterable, it acts as to "spread" it into individual elements:
+イテラブルな何かと使用すると、`...`はスプレッド演算子として働く。
 
 ```javascript
 function foo(x, y, z) {
@@ -182,7 +183,7 @@ let arr = [1, 2, 3];
 foo(...arr); // 1 2 3
 ```
 
-The other common usage of `...` is gathering a set of values together into an array. This is referred as "rest" operator.
+`...`のもう一つのよく知られた使い方は値を集めて配列にすることだ。これはレスト演算子として参照される。
 
 ```javascript
 function foo(...args) {
@@ -193,27 +194,25 @@ foo(1, 2, 3, 4, 5); // [1, 2, 3, 4, 5]
 
 <br>
 
-### 5. Object Literal Extensions
+### 5. オブジェクトリテラルの拡張
 
-ES6 allows declaring object literals by providing shorthand syntax for initializing properties from variables and defining function methods. It also enables the ability to have computed property keys in an object literal definition.
+ES6ではオブジェクトリテラルの宣言の際に、プロパティの初期化と関数メソッドの定義を短縮して記述することができます。これはオブジェクトリテラルの定義からプロパティのキーを計算することができるためです。
 
 ```javascript
 function getCar(make, model, value) {
     return {
-        // with property value shorthand
-        // syntax, you can omit the property
-        // value if key matches variable
-        // name
-        make,  // same as make: make
-        model, // same as model: model
-        value, // same as value: value
+        // プロパティの値を短縮して記述することで、
+        // キーと変数名が一致したプロパティになります
+        make,  // make: make   と同じ
+        model, // model: model と同じ
+        value, // value: value と同じ
 
         // computed values now work with
         // object literals
+        // 記述された値はオブジェクトリテラルとして機能します。
         ['make' + make]: true,
 
-        // Method definition shorthand syntax
-        // omits `function` keyword & colon
+        // メソッド定義の短縮形では`function`キーワードとコロンを省略することができます
         depreciate() {
             this.value -= 2500;
         }
@@ -233,10 +232,11 @@ console.log(car);
 
 <br>
 
-### 6. Octal and Binary Literals
+### 6. ８進数と２進数リテラル
 
-ES6 has new support for octal and binary literals.
-Prependending a number with `0o` or `0O` would convert it into octal value. Have a look at the following code:
+ES6では新たに８進数と２進数リテラルをサポートしました。
+`0o`か`0O`で始まる number は８進数に変換されます。
+以下のコードを見てください。
 
 ```javascript
 let oValue = 0o10;
@@ -248,9 +248,9 @@ console.log(bValue); // 2
 
 <br>
 
-### 7. Array and Object Destructuring
+### 7. 配列とオブジェクトの分解
 
-Destructuring helps in avoiding the need for temp variables when dealing with object and arrays.
+分解によってオブジェクトと配列を扱う際に一時的な変数の使用を避けることができます。
 
 ```javascript
 function foo() {
@@ -274,9 +274,9 @@ console.log(a, b, c); // 4 5 6
 
 <br>
 
-### 8. super in Objects
+### 8. オブジェクトにおける`super`の使用
 
-ES6 allows to use `super` method in (classless) objects with prototypes. Following is a simple example:
+ES6では`super`関数をプロトタイプと一緒に使用することを可能になりました。
 
 ```javascript
 var parent = {
@@ -299,12 +299,12 @@ child.foo(); // Hello from the Parent
 
 <br>
 
-### 9. Template Literal and Delimiters
+### 9. テンプレートリテラルとデリミタ
 
-ES6 introduces an easier way to add interpolations which are evaluated automatically.
+ES6では文字列への代入をかんたんにできます。代入したと同時に自動的に評価されます。
 
-* <code>\`${ ... }\`</code> is used for rendering the variables.
-* <code>\`</code> Backtick is used as delimiter.
+* <code>\`${ ... }\`</code>は変数をレンダリングできる
+* <code>\`</code> `\`バックスラッシュはデリミタとして使用する
 
 ```javascript
 let user = 'Kevin';
@@ -314,7 +314,7 @@ console.log(`Hi ${user}!`); // Hi Kevin!
 <br>
 
 ### 10. for...of vs for...in
-* `for...of` iterates over iterable objects, such as array.
+* `for...of` 配列のようなイテラブルなオブジェクトをイテレート(順繰りに処理)する
 
 ```javascript
 let nicknames = ['di', 'boo', 'punkeye'];
@@ -327,7 +327,7 @@ for (let nickname of nicknames) {
 // punkeye
 ```
 
-* `for...in` iterates over all enumerable properties of an object.
+* `for...in` はオブジェクトの*数え上げる事ができる*プロパティをイテレートする
 
 ```javascript
 let nicknames = ['di', 'boo', 'punkeye'];
@@ -343,11 +343,11 @@ for (let nickname in nicknames) {
 
 <br>
 
-### 11. Map and WeakMap
+### 11. Map と WeakMap
 
-ES6 introduces new set of data structures called `Map` and `WeakMap`. Now, we actually use maps in JavaScript all the time. In fact every object can be considered as a `Map`.
+ES6には新しいデータ構造の`Map`と`WeakMap`があります。全てのオブジェクトは、`Map`とも考えられるので、私たちはJavaScriptでいつも`Map`を使用しているといえます。
 
-An object is made of keys (always strings) and values, whereas in `Map`, any value (both objects and primitive values) may be used as either a key or a value. Have a look at this piece of code:
+オブジェクトがキー(常に文字である)と値で出来ているのに対し、`Map`では、すべての値(オブジェクトでも、プリミティブな値でも！)をキーにも値にも使用することができるのです。コードを見て下さい。
 
 ```javascript
 var myMap = new Map();
@@ -356,26 +356,26 @@ var keyString = "a string",
     keyObj = {},
     keyFunc = function() {};
 
-// setting the values
-myMap.set(keyString, "value associated with 'a string'");
-myMap.set(keyObj, "value associated with keyObj");
-myMap.set(keyFunc, "value associated with keyFunc");
+// 値をセットします
+myMap.set(keyString, "'a string'　に割り当てた値");
+myMap.set(keyObj, "keyObj　に割り当てた値");
+myMap.set(keyFunc, "keyFunc　に割り当てた値");
 
 myMap.size; // 3
 
-// getting the values
-myMap.get(keyString);    // "value associated with 'a string'"
-myMap.get(keyObj);       // "value associated with keyObj"
-myMap.get(keyFunc);      // "value associated with keyFunc"
+// 値を取得します
+myMap.get(keyString);    // "'a string' に割り当てた値"
+myMap.get(keyObj);       // "keyObj に割り当てた値"
+myMap.get(keyFunc);      // "keyFunc に割り当てた値"
 ```
 
 **WeakMap**
 
-A `WeakMap` is a Map in which the keys are weakly referenced, that doesn’t prevent its keys from being garbage-collected. That means you don't have to worry about memory leaks.
+`WeakMap`はマップです。しかし、ガベージコレクトされる、弱い参照を持つキーになっています。つまり、`WeakMap`ではメモリリークを心配する必要がありません。
 
-Another thing to note here- in `WeakMap` as opposed to `Map` *every key must be an object*.
+また、`Map`に対して、`WeakMap`では、*全てのキーはオブジェクト*でなくてはなりません。
 
-A `WeakMap` only has four methods `delete(key)`, `has(key)`, `get(key)` and `set(key, value)`.
+`WeakMap`はたった４つのメソッドしか持ちません。`delete(key)`, `has(key)`, `get(key)` と `set(key, value)`です。
 
 ```javascript
 let w = new WeakMap();
@@ -401,7 +401,7 @@ w.has(o1); // false
 
 ### 12. Set and WeakSet
 
-*Set* objects are collections of unique values. Duplicate values are ignored, as the collection must have all unique values. The values can be primitive types or object references.
+*Set* オブジェクトはユニークなコレクションです。重複した値を無視する、全てがユニークな値を保持するコレクションです。*Set*にはプリミティブ値でも、オブジェクトでも格納できます。
 
 ```javascript
 let mySet = new Set([1, 1, 2, 2, 3, 3]);
@@ -411,7 +411,7 @@ mySet.add('strings');
 mySet.add({ a: 1, b:2 });
 ```
 
-You can iterate over a set by insertion order using either the `forEach` method or the `for...of` loop.
+`forEach`メソッド、または`for...of`ループを使用して、Setをイテレートし、順番にアクセスすることが出来ます。
 
 ```javascript
 mySet.forEach((item) => {
@@ -432,11 +432,11 @@ for (let value of mySet) {
     // Object { a: 1, b: 2 }
 }
 ```
-Sets also have the `delete()` and `clear()` methods.
+また、Setは`delete()`メソッドと`clear()`メソッドを保持します。
 
 **WeakSet**
 
-Similar to `WeakMap`, the `WeakSet` object lets you store weakly held *objects* in a collection. An object in the `WeakSet` occurs only once; it is unique in the WeakSet's collection.
+`WeakMap`と同様に、`WeakSet`は弱い*オブジェクト*への参照を持つコレクションです。`WeakSet`はユニークなオブジェクトを持つコレクションであるため、`WeakSet`内にはただ一度だけ現れます。
 
 ```javascript
 var ws = new WeakSet();
@@ -447,21 +447,21 @@ ws.add(window);
 ws.add(obj);
 
 ws.has(window); // true
-ws.has(foo);    // false, foo has not been added to the set
+ws.has(foo);    // false, fooはsetにまだ加えられていない
 
-ws.delete(window); // removes window from the set
-ws.has(window);    // false, window has been removed
+ws.delete(window); // setからwindowを取り除く
+ws.has(window);    // false, windowを取り除いた
 ```
 
 <br>
 
 ### 13. Classes in ES6
 
-ES6 introduces new class syntax. One thing to note here is that ES6 class is not a new object-oriented inheritance model. They just serve as a syntactical sugar over JavaScript's existing prototype-based inheritance.
+ES6にはクラスのシンタックスが新しく追加されました。注意すべきことは、ES6のクラスはオブジェクト指向の継承モデルではないということです。あくまで既存のプロトタイプベースのJavaScriptのシンタックスシュガー(糖衣構文)に過ぎません。
 
-One way to look at a class in ES6 is just a new syntax to work with prototypes and contructor functions that we'd use in ES5.
+ES6のクラスは、新しいシンタックスです。今まで使用していたES5のprototype,constructor関数が内部で働きます。
 
-Functions defined using the `static` keyword implement static/class functions on the class.
+`static`キーワードをもちいることで静的関数をクラス内に定義できます。
 
 ```javascript
 class Task {
@@ -484,9 +484,9 @@ task.showId(); // 23
 Task.loadAll(); // "Loading all tasks.."
 ```
 
-**extends and super in classes**
+**クラスにおけるextendsとsuper**
 
-Consider the following code:
+次のコードを見て下さい。
 
 ```javascript
 class Car {
@@ -507,33 +507,33 @@ let c = new Porsche();
 // Creating Porsche
 ```
 
-`extends` allow child class to inherit from parent class in ES6. It is important to note that the derived constructor must call `super()`.
+`extends`はES6において、親クラスから子クラスへの継承を可能にします。コンストラクターで`super`を呼び出すことを忘れないでください。
 
-Also, you can call parent class's method in child class's methods using `super.parentMethodName()`
+また、親クラスのメソッドを子クラスから`super.parentMethodName()`といった形で使用できます。
 
-[Read more about classes here](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
+[クラスについてもっと知りたい](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
 
-A few things to keep in mind:
+とどめておくべきこと
 
-* Class declarations are not hoisted. You first need to declare your class and then access it, otherwise ReferenceError will be thrown.
-* There is no need to use `function` keyword when defining functions inside a class definition.
+*クラス宣言はホスティングをしません。はじめにクラスを宣言してからアクセスできます。そうでないとReferenceErrorが投げられます。
+*クラス宣言の内部で関数を定義するときに、`function`キーワードは使用する必要はありません。
 
 <br>
 
 ### 14. Symbol
 
-A `Symbol` is a unique and immutable data type introduced in ES6. The purpose of a symbol is to generate a unique identifier but you can never get any access to that identifier.
+シンボル(`Symbol`)は値を変更出来ないデータ型です。シンボルの目的は、ユニークな識別子を生成することです。
 
-Here’s how you create a symbol:
+シンボルを作成してみましょう。
 
 ```javascript
 var sym = Symbol("some optional description");
 console.log(typeof sym); // symbol
 ```
 
-Note that you cannot use `new` with `Symbol(…)`.
+`Symbol(…)`を使用する際は、`new`キーワードは不要です。
 
-If a symbol is used as a property/key of an object, it’s stored in a special way that the property will not show up in a normal enumeration of the object’s properties.
+シンボルはオブジェクトのプロパティ、またはキーとして使用された時、通常の数え上げられるプロパティとしては格納されません。
 
 ```javascript
 var o = {
@@ -544,18 +544,19 @@ var o = {
 console.log(Object.getOwnPropertyNames(o)); // val
 ```
 
-To retrieve an object’s symbol properties, use `Object.getOwnPropertySymbols(o)`
+オブジェクトのシンボルとなったプロパティにアクセスするときは、`Object.getOwnPropertySymbols(o)`を使用して下さい。
 
 
 <br>
 
 ### 15. Iterators
 
-An iterator accesses the items from a collection one at a time, while keeping track of its current position within that sequence. It provides a `next()` method which returns the next item in the sequence. This method returns an object with two properties: done and value.
+イテレータはコレクションの１つのアイテムに一度アクセスします。そして、コレクションのアクセスした場所を記憶しています。
+イテレータにはコレクションの次の順番のアイテムを返す`next()`メソッドがあり、返却されたアイテムであるオブジェクトは、doneとvalueという２つのプロパティを持っています。
 
-ES6 has `Symbol.iterator` which specifies the default iterator for an object. Whenever an object needs to be iterated (such as at the beginning of a for..of loop), its *@@iterator* method is called with no arguments, and the returned iterator is used to obtain the values to be iterated.
+ES6は`Symbol.iterator`をもち、オブジェクトのためのイテレータを提供します。オブジェクトはいつでも、for...ofのようなループで数え上げる事ができます。オブジェクトの`@@iterator`メソッドは実行時に引数を持たず、イテレートすることで値を返すイテレータを返します。
 
-Let’s look at an array, which is an iterable, and the iterator it can produce to consume its values:
+配列を見てみましょう。配列はイテラブル(数え上げ可能)です。イテレータは値を出力します。
 
 ```javascript
 var arr = [11,12,13];
@@ -568,16 +569,16 @@ itr.next(); // { value: 13, done: false }
 itr.next(); // { value: undefined, done: true }
 ```
 
-Note that you can write custom iterators by defining `obj[Symbol.iterator]()` with the object definition.
+オブジェクトの定義の際に`obj[Symbol.iterator]()` を定義することで、自前のイテレータを記述することもできます。
 
 <br>
 
 ### 16. Generators
 
-Generator functions are a new feature in ES6 that allow a function to generate many values over time by returning an object which can be iterated over to pull values from the function one value at a time.
+ジェネレータ関数はES6の新しい特徴の１つです。ジェネレータ関数は何度も値を返します。返り値となるオブジェクトをイテレートし、１度のイテレートで１つ、値を取得します。
 
-A generator function returns an **iterable object** when it's called.
-It is written using the new `*` syntax as well as the new `yield` keyword introduced in ES6.
+ジェネレータ関数は実行された際に、**イテラブルなオブジェクト**を返します。
+`*`という新しいシンタックスと`yield`というES6の新しいキーワードによって記述されます。
 
 ```javascript
 function *infiniteNumbers() {
@@ -594,17 +595,17 @@ numbers.next(); // { value: 2, done: false }
 numbers.next(); // { value: 3, done: false }
 ```
 
-Each time *yield* is called, the yielded value becomes the next value in the sequence.
+yidldを呼んだ回数分だけ、yieldされた値が次の値になります。
 
-Also, note that generators compute their yielded values on demand, which allows them to efficiently represent sequences that are expensive to compute, or even infinite sequences.
+また、ジェネレータはオンデマンドでyieldされた値を計算し、効率よく、連続したシークエンスに要求に応じてアクセスできます。無限に続くシークエンスですら可能です。
 
 <br>
 
 ### 17. Promises
 
-ES6 has native support for promises. A *promise* is an object that is waiting for an asynchronous operation to complete, and when that operation completes, the promise is either fulfilled(resolved) or rejected.
+ES6ではネイティブでPromiseをサポートしています。プロミスは非同期実行が完了することを待ち続けるオブジェクトです。非同期実行が完了したとき、プロミス(つまり約束)は「遂行(fulfilled/resolved)」されるか、「破棄(rejected)」されます。
 
-The standard way to create a Promise is by using the `new Promise()` constructor which accepts a handler that is given two functions as parameters. The first handler (typically named `resolve`) is a function to call with the future value when it's ready; and the second handler (typically named `reject`) is a function to call to reject the Promise if it can't resolve the future value.
+Promiseをつくる通常の方法は、`new Promise()`コンストラクターを使用することで、2つの与えられた関数を引数として扱える様になります。第一引数は`resolve`と呼ばれる関数で、**future valueとともに** 実行されることが想定されます。第二引数は`reject`で、Promiseが**future value**をresolveせず、rejectされたときに実行されます。
 
 ```javascript
 var p = new Promise(function(resolve, reject) {  
@@ -616,14 +617,15 @@ var p = new Promise(function(resolve, reject) {
 });
 ```
 
-Every Promise has a method named `then` which takes a pair of callbacks. The first callback is called if the promise is resolved, while the second is called if the promise is rejected.
+全てのPromiseは`then`と呼ばれるメソッドをもっています。このメソッドはペアとなるコールバックを保持します。
+１つめのコールバックはプロミスが遂行された際に、もう一方はプロミスが破棄された時に呼ばれます。
 
 ```javascript
 p.then((val) => console.log("Promise Resolved", val),
        (err) => console.log("Promise Rejected", err));
 ```
 
-Returning a value from `then` callbacks will pass the value to the next `then` callback.
+`then`のコールバックから返却された値は次の`then`のコールバックに渡されます。
 
 ```javascript
 var hello = new Promise(function(resolve, reject) {  
@@ -635,8 +637,8 @@ hello.then((str) => `${str} World`)
      .then((str) => console.log(str)) // Hello World!
 ```
 
-When returning a promise, the resolved value of the promise will get passed to the next callback to effectively chain them together.
-This is a simple technique to avoid "callback hell".
+Promiseが帰ってきた時、遂行された値は次のコールバックにチェーンして渡していきます。
+これはコールバック地獄を避けるシンプルな１つの策です。。
 
 ```javascript
 var p = new Promise(function(resolve, reject) {  
