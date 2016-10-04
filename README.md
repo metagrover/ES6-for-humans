@@ -32,6 +32,7 @@
 * [Korean Version (Thanks to scarfunk)](https://github.com/metagrover/ES6-for-humans/tree/korean-version)
 * [French Version (Thanks to tnga)](https://github.com/metagrover/ES6-for-humans/tree/french-version)
 * [Spanish Version (Thanks to carletex)](https://github.com/metagrover/ES6-for-humans/tree/spanish-version)
+* [Japanese Version (Thanks to isdh)](https://github.com/metagrover/ES6-for-humans/tree/japanese-version)
 
 <br>
 
