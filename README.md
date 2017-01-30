@@ -68,7 +68,7 @@ Another form of block-scoped declaration is the `const`, which creates constants
 
 A few things to keep in mind:
 
-* Hoisting of `let` and `const` vary from the traditional hoisting of variables and functions. Both `let` and `const` are hoisted, but cannot be accessed before their declaration, because of [Temporal Dead Zone](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified/) 
+* Hoisting of `let` and `const` vary from the traditional hoisting of variables and functions. Both `let` and `const` are hoisted, but cannot be accessed before their declaration, because of [Temporal Dead Zone](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified/)
 * `let` and `const` are scoped to the nearest enclosing block.
 * When using `const`, use CAPITAL_CASING (this is a common convention).
 * `const` has to be defined with its declaration.
@@ -153,7 +153,7 @@ function Person() {
 
 var p = new Person();
 ```
-[Read more about 'Lexical this' in arrow functions here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#Lexical_this)
+[Read more about 'Lexical this' in arrow functions here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#No_binding_of_this)
 
 <br>
 
@@ -469,11 +469,11 @@ class Task {
     constructor() {
         console.log("task instantiated!");
     }
-    
+
     showId() {
         console.log(23);
     }
-    
+
     static loadAll() {
         console.log("Loading all tasks..");
     }
