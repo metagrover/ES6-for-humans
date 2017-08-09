@@ -2,6 +2,10 @@
 
 <br>
 
+:loudspeaker: The complete guide is now available on [Amazon](https://www.amazon.com/ES6-Humans-Latest-Standard-JavaScript/dp/1484226224)
+
+[![ES6 for humans - Apress book](book-cover.jpg)](https://www.amazon.com/ES6-Humans-Latest-Standard-JavaScript/dp/1484226224)
+
 ### Table of Contents
 
 * [`let`, `const` and block scoping](#1-let-const-and-block-scoping)
