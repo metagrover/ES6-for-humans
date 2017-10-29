@@ -187,7 +187,25 @@ let arr = [1, 2, 3];
 foo(...arr); // 1 2 3
 ```
 
-The other common usage of `...` is gathering a set of values together into an array. This is referred as "rest" operator.
+Spread is also great for shaping a new object from other object(s):
+
+```javascript
+const defaults = {avatar: 'placeholder.jpg', active: false}
+const userData = {username: 'foo', avatar: 'bar.jpg'}
+
+console.log({created: '2017-12-31', ...defaults, ...userData})
+// {created: "2017-12-31", avatar: "bar.jpg", active: false, username: "foo"}
+```
+
+New arrays can also be shaped expressively:
+
+```javascript
+const arr1 = [1, 2, 3];
+const arr2 = [7, 8, 9];
+console.log([...arr1, 4, 5, 6, ...arr2]) // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+The other common usage of `...` is gathering all arguments together into an array. This is referred as "rest" operator.
 
 ```javascript
 function foo(...args) {
