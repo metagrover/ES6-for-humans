@@ -54,19 +54,19 @@ var a = 2;
 console.log(a); // 2
 ```
 
-Another form of block-scoped declaration is the `const`, which creates constants. In ES6, a `const` represents a constant reference to a value. In other words, the value is not frozen, just the assignment of it. Here's a simple example:
+Another form of block-scoped declaration is the `const`, which creates constants. In ES6, a `const` represents a constant reference to a value. In other words, `Object`'s and `Array`'s contents may change, only the re-assignment of the variable is prevented. Here's a simple example:
 
 ```javascript
 {
-    const B = 5;
-    B = 10; // TypeError: Assignment to constant variable
+    const b = 5;
+    b = 10; // TypeError: Assignment to constant variable
 
-    const ARR = [5, 6];
-    ARR.push(7);
-    console.log(ARR); // [5,6,7]
-    ARR = 10; // TypeError: Assignment to constant variable
-    ARR[0] = 3; // value is mutable
-    console.log(ARR); // [3,6,7]
+    const arr = [5, 6];
+    arr.push(7);
+    console.log(arr); // [5,6,7]
+    arr = 10; // TypeError: Assignment to constant variable
+    arr[0] = 3; // value is mutable
+    console.log(arr); // [3,6,7]
 }
 ```
 
@@ -74,7 +74,7 @@ A few things to keep in mind:
 
 * Hoisting of `let` and `const` vary from the traditional hoisting of variables and functions. Both `let` and `const` are hoisted, but cannot be accessed before their declaration, because of [Temporal Dead Zone](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified)
 * `let` and `const` are scoped to the nearest enclosing block.
-* When using `const`, use CAPITAL_CASING (this is a common convention).
+* When using const with fixed strings or values, CAPITAL_CASING might be appropriate (ex: `const PI = 3.14`)
 * `const` has to be defined with its declaration.
 
 <br>
