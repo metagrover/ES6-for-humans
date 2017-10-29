@@ -81,7 +81,7 @@ A few things to keep in mind:
 
 ### 2. Arrow Functions
 
-Arrow functions are a short-hand notation for writing functions in ES6. The arrow function definition consists of a parameter list `( ... )`, followed by the `=>` marker and a function body.
+Arrow functions are a short-hand notation for writing functions in ES6. The arrow function definition consists of a parameter list `( ... )`, followed by the `=>` marker and a function body. For single-argument functions, the parentheses may be omitted.
 
 ```javascript
 // Classical Function Expression
@@ -91,10 +91,14 @@ function addition(a, b) {
 
 // Implementation with arrow function
 const addition = (a, b) => a + b;
-```
-Note that in the above example, the `addition` arrow function is implemented with "concise body" which does not need an explicit return statement.
 
-Here is an example with the usual "block body"
+// With single argument, no parentheses required
+const add5 = a => 5 + a;
+```
+
+Note that in the above example, the `addition` arrow function is implemented with "concise body" which does not need an explicit return statement. Note the omitted `{ }` after the `=>`.
+
+Here is an example with the usual "block body." Including the curly brace wrappers.
 
 ```javascript
 const arr = ['apple', 'banana', 'orange'];
