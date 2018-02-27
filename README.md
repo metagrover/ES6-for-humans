@@ -42,7 +42,7 @@
 
 ### 1. let, const and block scoping
 
-`let` allows you to create declarations which are bound to any block, called block scoping. Instead of using `var`, which provides function scope, it is recommended to use `let` in ES6.
+`let` allows you to create declarations which are bound to any block, called block scoping. Instead of using `var`, which provides function scope, it is recommended to use block scoped variables (`let` or `const`) in ES6.
 
 ```javascript
 var a = 2;
@@ -76,6 +76,7 @@ A few things to keep in mind:
 * `let` and `const` are scoped to the nearest enclosing block.
 * When using const with fixed strings or values, CAPITAL_CASING might be appropriate (ex: `const PI = 3.14`)
 * `const` has to be defined with its declaration.
+* Always use `const` over `let`, unless you plan on re-assigning the variable.
 
 <br>
 
