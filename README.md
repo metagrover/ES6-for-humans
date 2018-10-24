@@ -289,15 +289,28 @@ let arr = foo(); // [1,2,3]
 let [a, b, c] = foo();
 console.log(a, b, c); // 1 2 3
 
-function bar() {
-    return {
-        x: 4,
-        y: 5,
-        z: 6
-    };
+```
+
+```javascript
+
+function getCar() {
+  return {
+    make: 'Tesla',
+    model: 'g95',
+    metadata: {
+      vin: '123abc',
+      miles: '12000'
+    }
+  };
 }
-let { x: a, y: b, z: c } = bar();
-console.log(a, b, c); // 4 5 6
+
+const {make, model} = getCar();
+console.log(make, model); // Tesla g95
+
+const {make, metadata: {miles}} = getCar();
+console.log(make, miles); // Tesla 12000
+
+
 ```
 
 <br>
