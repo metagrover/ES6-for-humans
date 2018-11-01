@@ -184,12 +184,18 @@ getFinalPrice(500); // 850
 When used with any iterable, it acts as to "spread" it into individual elements:
 
 ```javascript
-function foo(x, y, z) {
-    console.log(x, y, z);
-}
+const makeToast = (breadType, topping1, topping2) => {
+  return `I had ${breadType} toast with ${topping1} and ${topping2}`;
+};
+```
 
-let arr = [1, 2, 3];
-foo(...arr); // 1 2 3
+```javascript
+const ingredients = ['wheat', 'butter', 'jam'];
+makeToast(...ingredients);
+// "I had wheat toast with butter and jam"
+
+makeToast(...['sourdough', 'avocado', 'kale']);
+// "I had sourdough toast with avocado and kale"
 ```
 
 Spread is also great for shaping a new object from other object(s):
@@ -648,7 +654,7 @@ ES6 has native support for promises. A *promise* is an object that is waiting fo
 The standard way to create a Promise is by using the `new Promise()` constructor which accepts a handler that is given two functions as parameters. The first handler (typically named `resolve`) is a function to call with the future value when it's ready; and the second handler (typically named `reject`) is a function to call to reject the Promise if it can't resolve the future value.
 
 ```javascript
-const p = new Promise((resolve, reject) => {  
+const p = new Promise((resolve, reject) => {
     if (/* condition */) {
         resolve(/* value */);  // fulfilled successfully
     } else {
