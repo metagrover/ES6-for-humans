@@ -2,33 +2,36 @@
 
 <br>
 
-:loudspeaker: The complete guide is now available on [Amazon](https://www.amazon.com/ES6-Humans-Latest-Standard-JavaScript/dp/1484226224)
+:loudspeaker: Hướng dẫn đầy đủ hiện có sẵn trên [Amazon](https://www.amazon.com/ES6-Humans-Latest-Standard-JavaScript/dp/1484226224)
 
 [![ES6 for humans - Apress book](book-cover.jpg)](https://www.amazon.com/ES6-Humans-Latest-Standard-JavaScript/dp/1484226224)
 
-### Table of Contents
+### Mục lục
 
-* [`let`, `const` and block scoping](#1-let-const-and-block-scoping)
-* [Arrow Functions](#2-arrow-functions)
-* [Default Function Parameters](#3-default-function-parameters)
-* [Spread/Rest Operator](#4-spread--rest-operator)
-* [Object Literal Extensions](#5-object-literal-extensions)
-* [Octal and Binary Literals](#6-octal-and-binary-literals)
-* [Array and Object Destructuring](#7-array-and-object-destructuring)
-* [super in Objects](#8-super-in-objects)
-* [Template Literal and Delimiters](#9-template-literal-and-delimiters)
-* [for...of vs for...in](#10-forof-vs-forin)
-* [Map and WeakMap](#11-map-and-weakmap)
-* [Set and WeakSet](#12-set-and-weakset)
-* [Classes in ES6](#13-classes-in-es6)
-* [Symbol](#14-symbol)
-* [Iterators](#15-iterators)
-* [Generators](#16-generators)
-* [Promises](#17-promises)
+- [ES6 for Humans](#es6-for-humans)
+    - [Mục lục](#m%E1%BB%A5c-l%E1%BB%A5c)
+    - [Các ngôn ngữ khác](#c%C3%A1c-ng%C3%B4n-ng%E1%BB%AF-kh%C3%A1c)
+    - [1. let, const và block scoping](#1-let-const-v%C3%A0-block-scoping)
+    - [2. Arrow Functions](#2-arrow-functions)
+    - [3. Default Function Parameters](#3-default-function-parameters)
+    - [4. Spread / Rest Operator](#4-spread--rest-operator)
+    - [5. Object Literal Extensions](#5-object-literal-extensions)
+    - [6. Octal và Binary Literals](#6-octal-v%C3%A0-binary-literals)
+    - [7. Array và Object Destructuring](#7-array-v%C3%A0-object-destructuring)
+    - [8. Super in Objects](#8-super-in-objects)
+    - [9. Template Literal và Delimiters](#9-template-literal-v%C3%A0-delimiters)
+    - [10. for...of vs for...in](#10-forof-vs-forin)
+    - [11. Map và WeakMap](#11-map-v%C3%A0-weakmap)
+    - [12. Set và WeakSet](#12-set-v%C3%A0-weakset)
+    - [13. Classes trong ES6](#13-classes-trong-es6)
+    - [14. Symbol](#14-symbol)
+    - [15. Iterators](#15-iterators)
+    - [16. Generators](#16-generators)
+    - [17. Promises](#17-promises)
 
 <br>
 
-### Languages
+### Các ngôn ngữ khác
 
 * [Chinese Version (Thanks to barretlee)](http://www.barretlee.com/blog/2016/07/09/a-kickstarter-guide-to-writing-es6/)
 * [Portuguese Version (Thanks to alexmoreno)](https://github.com/alexmoreno/ES6-para-humanos)
@@ -37,12 +40,13 @@
 * [French Version (Thanks to tnga)](https://github.com/metagrover/ES6-for-humans/tree/french-version)
 * [Spanish Version (Thanks to carletex)](https://github.com/metagrover/ES6-for-humans/tree/spanish-version)
 * [Japanese Version (Thanks to isdh)](https://github.com/metagrover/ES6-for-humans/tree/japanese-version)
+* [VietNamese Version (Thanks to thaycacac)](https://github.com/metagrover/ES6-for-humans/tree/japanese-version)
 
 <br>
 
-### 1. let, const and block scoping
+### 1. let, const và block scoping
 
-`let` allows you to create declarations which are bound to any block, called block scoping. Instead of using `var`, which provides function scope, it is recommended to use block scoped variables (`let` or `const`) in ES6.
+`let` cho phép bạn tạo khởi tạo khai báo với phạm vi trong block được gọi là block scope. Nó dùng để thay thế `var`, cái mà trước đây phạm vi của nó là function scope, khuyễn khích nên sử dụng biễn trong block scope (`let` or `const`) trong ES6.
 
 ```javascript
 var a = 2;
@@ -54,7 +58,7 @@ var a = 2;
 console.log(a); // 2
 ```
 
-Another form of block-scoped declaration is the `const`, which creates constants. In ES6, a `const` represents a constant reference to a value. In other words, `Object`'s and `Array`'s contents may change, only the re-assignment of the variable is prevented. Here's a simple example:
+Một hình thức khai báo khác của block-scoped là `const`, sử dụng khi tạo hằng số. Trong ES6, một `const` được sử dụng khi tham chiếu liên tục đến một giá trị. Cách nói khác, giá trị của `Object` và `Array` có thể thay đổi nhưng không được gán lại biến. Ở đây là một ví dụ đơn giản:
 
 ```javascript
 {
@@ -70,19 +74,19 @@ Another form of block-scoped declaration is the `const`, which creates constants
 }
 ```
 
-A few things to keep in mind:
+Một số điều cần ghi nhớ:
 
-* Hoisting of `let` and `const` vary from the traditional hoisting of variables and functions. Both `let` and `const` are hoisted, but cannot be accessed before their declaration, because of [Temporal Dead Zone](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified)
-* `let` and `const` are scoped to the nearest enclosing block.
-* When using const with fixed strings or values, CAPITAL_CASING might be appropriate (ex: `const PI = 3.14`)
-* `const` has to be defined with its declaration.
-* Always use `const` over `let`, unless you plan on re-assigning the variable.
+* Hoisting (là khái niệm chỉ việc mọi khai báo biến) của `let` và `const` khác nhau cơ bản ở hoisting của biến và hàm. Cả `let` và `const` đều hoisted, nhưng không thể được truy cập trước khi khai vào bời vì [Temporal Dead Zone](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified)
+* `let` và `const` được sử dụng trong phạm vi gần dấu mở ngoặc nhất cho tới dấu đóng ngoặc.
+* Khi fix một giá trị cụ thế không thay đổi suốt chương trình nên đặt tên dưới dạng caplock (vd: `const PI = 3.14`)
+* `const` phải được định nghĩa khi khai báo nó.
+* Luôn sử dụng `const` thay vì `let`, trừ khi bạn muốn gắn lại biến.
 
 <br>
 
 ### 2. Arrow Functions
 
-Arrow functions are a short-hand notation for writing functions in ES6. The arrow function definition consists of a parameter list `( ... )`, followed by the `=>` marker and a function body. For single-argument functions, the parentheses may be omitted.
+Arrow functions là dạng viết ngắn gọn cho một hàm trong ES6. Một arrow function được hình thành bơi một danh sách các parameter `( ... )`, theo sau là `=>` để đánh đấu sau nó là body function. Đối với hàm chỉ có một parameter thì có thể bỏ qua cặp dấu ngoặc tròn.
 
 ```javascript
 // Classical Function Expression
@@ -97,9 +101,9 @@ const addition = (a, b) => a + b;
 const add5 = a => 5 + a;
 ```
 
-Note that in the above example, the `addition` arrow function is implemented with "concise body" which does not need an explicit return statement. Note the omitted `{ }` after the `=>`.
+Lưu ý ví dụ ở bên trên, `addition` arrow function được implement với "concise body" có nghĩa là nó khong cần phải đặt trong cặp dấu `{ }` sau `=>` vì phần body của nó chỉ có một câu lệnh. 
 
-Here is an example with the usual "block body." Including the curly brace wrappers.
+Dưới đây là một ví dụ sử dụng "block body" thông thường.
 
 ```javascript
 const arr = ['apple', 'banana', 'orange'];
@@ -111,11 +115,11 @@ const breakfast = arr.map(fruit => {
 console.log(breakfast); // ['apples', 'bananas', 'oranges']
 ```
 
-**Behold! There is more...**
+**Kìa! Còn nhiều hơn thế...**
 
-Arrow functions don't just make the code shorter. They are closely related to `this` binding behavior.
+Arrow functions không chỉ làm code của bạn ngắn hớn. Chúng còn có liên kết chặt chẽ với việc binding `this`.
 
-Arrow functions behavior with `this` keyword varies from that of normal functions. Each function in JavaScript defines its own `this` context but arrow functions capture the `this` value of the nearest enclosing context. Check out the following code:
+Mỗi function trong Javascript đều định nghĩa ngữ cảnh của nó là từ khoá `this`. Việc sử dụng arrow function có thể làm thay đổi ngữ cảnh này, nó sẽ thảnh đổi `this` trỏ vào ngữ cảnh gần nó nhất. Hãy kiếm tra đoạn ví dụ dưới đây:
 
 ```javascript
 function Person() {
@@ -132,7 +136,7 @@ function Person() {
 var p = new Person();
 ```
 
-In ECMAScript 3/5, this issue was fixed by assigning the value in `this` to a variable that could be closed over.
+Trong ECMAScript 3/5, vấn đề này đã được khắc phục bằng cách gán giá trị trong `this` cho một biến có thể được đóng lại.
 
 ```javascript
 function Person() {
@@ -147,7 +151,7 @@ function Person() {
 }
 ```
 
-As mentioned above, arrow functions capture the this value of the nearest enclosing context, so the following code works as expected, even with nested arrow functions.
+Như đã đề cập ở trên, các arrow function nắm bắt giá trị này của ngữ cảnh kèm theo gần nhất, do đó đoạn mã sau hoạt động như mong đợi, ngay cả với các arrow function lồng nhau.
 
 ```javascript
 function Person() {
@@ -168,7 +172,8 @@ let p = new Person();
 
 ### 3. Default Function Parameters
 
-ES6 allows you to set default parameters in function definitions. Here is a simple illustration.
+ES6 cho phép bạn set giá trị mặc định cho parameters khi khai báo hàm 
+ES6 allows you to set default parameters in function definitions. Dưới đây là một minh hoạ đơn giản:
 
 ```javascript
 const getFinalPrice = (price, tax = 0.7) => price + price * tax;
@@ -179,9 +184,9 @@ getFinalPrice(500); // 850
 
 ### 4. Spread / Rest Operator
 
-`...` operator is referred to as spread or rest operator, depending on how and where it is used.
+`...` là toán tử được gọi là spread hoặc rest operator, tuỳ thuộc vào cách thức và nơi chúng được sử dụng.
 
-When used with any iterable, it acts as to "spread" it into individual elements:
+Khi sử dụng bất kỳ một iterable nào chúng đều chia như "spread" thành các phần tử riêng lẻ:
 
 ```javascript
 const makeToast = (breadType, topping1, topping2) => {
@@ -198,7 +203,7 @@ makeToast(...['sourdough', 'avocado', 'kale']);
 // "I had sourdough toast with avocado and kale"
 ```
 
-Spread is also great for shaping a new object from other object(s):
+Cũng có thể sử dụng spread để lấy shaping từ nột đối tượng mới từ một hoặc nhiều đối tường khác:
 
 ```javascript
 const defaults = {avatar: 'placeholder.jpg', active: false}
@@ -208,7 +213,7 @@ console.log({created: '2017-12-31', ...defaults, ...userData})
 // {created: "2017-12-31", avatar: "bar.jpg", active: false, username: "foo"}
 ```
 
-New arrays can also be shaped expressively:
+Mảng cũng có thể như vậy:
 
 ```javascript
 const arr1 = [1, 2, 3];
@@ -216,7 +221,7 @@ const arr2 = [7, 8, 9];
 console.log([...arr1, 4, 5, 6, ...arr2]) // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
-The other common usage of `...` is gathering all arguments together into an array. This is referred as "rest" operator.
+Cách sử dụng phổ biến khác của `...` là tập hợp các đối số của mảng, điều này được gọi là toán tử "rest"
 
 ```javascript
 function foo(...args) {
@@ -229,7 +234,7 @@ foo(1, 2, 3, 4, 5); // [1, 2, 3, 4, 5]
 
 ### 5. Object Literal Extensions
 
-ES6 allows declaring object literals by providing shorthand syntax for initializing properties from variables and defining function methods. It also enables the ability to have computed property keys in an object literal definition.
+ES6 cho phép khai báo các đối tượng bằng cách cung cấp cú pháp ngắn gọn để khởi tạo các thuộc tính từ các biến và xác định các phương thức hàm. Nó cũng có thể có computed property keys trong một object literal.
 
 ```javascript
 function getCar(make, model, value) {
@@ -267,10 +272,10 @@ console.log(car);
 
 <br>
 
-### 6. Octal and Binary Literals
+### 6. Octal và Binary Literals
 
-ES6 has new support for octal and binary literals.
-Prependending a number with `0o` or `0O` would convert it into octal value. Have a look at the following code:
+ES6 có hỗ trợ mới cho các số bát phân và nhị phân.
+Một số bắt đầu với `0o` hoặc `0O` sẽ được convert sang hệ bát phân. Hãy xem ví dụ dưới đây:
 
 ```javascript
 let oValue = 0o10;
@@ -282,9 +287,9 @@ console.log(bValue); // 2
 
 <br>
 
-### 7. Array and Object Destructuring
+### 7. Array và Object Destructuring
 
-Destructuring helps in avoiding the need for temp variables when dealing with object and arrays.
+Destructuring giúp tránh sự cần thiết của các biến tạm thời khi làm việc với đối tượng và mảng.
 
 ```javascript
 function foo() {
@@ -300,14 +305,14 @@ console.log(a, b, c); // 1 2 3
 ```javascript
 
 function getCar() {
-  return {
-    make: 'Tesla',
-    model: 'g95',
-    metadata: {
-      vin: '123abc',
-      miles: '12000'
-    }
-  };
+    return {
+        make: 'Tesla',
+        model: 'g95',
+        metadata: {
+        vin: '123abc',
+        miles: '12000'
+        }
+    };
 }
 
 const {make, model} = getCar();
@@ -316,14 +321,13 @@ console.log(make, model); // Tesla g95
 const {make, metadata: {miles}} = getCar();
 console.log(make, miles); // Tesla 12000
 
-
 ```
 
 <br>
 
-### 8. super in Objects
+### 8. Super in Objects
 
-ES6 allows to use `super` method in (classless) objects with prototypes. Following is a simple example:
+ES6 sử dụng phương thức `super` trong (classless) đối tượng với prototypes. Theo dõi ví dụ dưới đây:
 
 ```javascript
 const parent = {
@@ -346,12 +350,12 @@ child.foo(); // Hello from the Parent
 
 <br>
 
-### 9. Template Literal and Delimiters
+### 9. Template Literal và Delimiters
 
-ES6 introduces an easier way to add interpolations which are evaluated automatically.
+ES6 giới thiệu một cách dễ dàng hơn để thêm các phép interpolations được đánh giá tự động.
 
-* <code>\`${ ... }\`</code> is used for rendering the variables.
-* <code>\`</code> Backtick is used as delimiter.
+* <code>\`${ ... }\`</code> được sử dụng để hiển thị các biến.
+* <code>\`</code> backtick được sử dụng như dấu phân cách.
 
 ```javascript
 let user = 'Kevin';
@@ -361,7 +365,7 @@ console.log(`Hi ${user}!`); // Hi Kevin!
 <br>
 
 ### 10. for...of vs for...in
-* `for...of` iterates over iterable objects, such as array.
+* `for...of` lặp qua các đối tượng lặp, chẳng hạn như mảng.
 
 ```javascript
 const nicknames = ['di', 'boo', 'punkeye'];
@@ -374,7 +378,7 @@ for (let nickname of nicknames) {
 // punkeye
 ```
 
-* `for...in` iterates over all enumerable properties of an object.
+* `for...in` lặp qua các thuộc tính enumerable của từng đối tương. Chẳng hạn:
 
 ```javascript
 const nicknames = ['di', 'boo', 'punkeye'];
@@ -390,11 +394,11 @@ for (let nickname in nicknames) {
 
 <br>
 
-### 11. Map and WeakMap
+### 11. Map và WeakMap
 
-ES6 introduces new set of data structures called `Map` and `WeakMap`. Now, we actually use maps in JavaScript all the time. In fact every object can be considered as a `Map`.
+ES6 giới thiệu bộ cấu trúc mới gọi là `Map` và `WeakMap`. Bầy giờ, chúng ta hoàn toàn có thể sử dụng map trong Javascript. Thực thế tất cả các object đều có thể xem như một `Map`.
 
-An object is made of keys (always strings) and values, whereas in `Map`, any value (both objects and primitive values) may be used as either a key or a value. Have a look at this piece of code:
+Một đối tượng trong `Map` được tạo bởi key (luôn luôn là strings) và values, mọi value (cả objects và primitive values) có thể được sử dụng làm một key hoặc một value. Hãy nhìn vào đoạn code này:
 
 ```javascript
 const myMap = new Map();
@@ -418,11 +422,11 @@ myMap.get(keyFunc);      // "value associated with keyFunc"
 
 **WeakMap**
 
-A `WeakMap` is a Map in which the keys are weakly referenced, that doesn’t prevent its keys from being garbage-collected. That means you don't have to worry about memory leaks.
+Một `WeakMap` là một Map với các key với tham chiếu yếu, không ngăn chặn các keys của nó từ garbage-collected. Điều đó có nghĩa là bạn không phải lo lắng về rò rỉ bộ nhớ.
 
-Another thing to note here- in `WeakMap` as opposed to `Map` *every key must be an object*.
+Một số lưu ý trong `WeakMap` trái ngược với `Map` *mọi key phải là một đối tượng*.
 
-A `WeakMap` only has four methods `delete(key)`, `has(key)`, `get(key)` and `set(key, value)`.
+Một `WeakMap` chỉ có bốn phương thức `delete(key)`, `has(key)`, `get(key)` và `set(key, value)`.
 
 ```javascript
 const w = new WeakMap();
@@ -446,9 +450,9 @@ w.has(o1); // false
 
 <br>
 
-### 12. Set and WeakSet
+### 12. Set và WeakSet
 
-*Set* objects are collections of unique values. Duplicate values are ignored, as the collection must have all unique values. The values can be primitive types or object references.
+*Set* objects là tập hợp các giá trị duy nhất. Những giá trị trùng lặp sẽ bị bỏ qua, vì tất cả các giá trị trong *Set* phải là duy nhất. Các giá trị có thể là kiểu nguyên thủy hoặc tham chiếu đối tượng.
 
 ```javascript
 const mySet = new Set([1, 1, 2, 2, 3, 3]);
@@ -458,7 +462,7 @@ mySet.add('strings');
 mySet.add({ a: 1, b:2 });
 ```
 
-You can iterate over a set by insertion order using either the `forEach` method or the `for...of` loop.
+Bạn cũng có thể lặp qua từng phần tử trong *Set* bằng cách sử dụng phương thức `forEach` hoặc `for...of`.
 
 ```javascript
 mySet.forEach((item) => {
@@ -479,11 +483,11 @@ for (let value of mySet) {
     // Object { a: 1, b: 2 }
 }
 ```
-Sets also have the `delete()` and `clear()` methods.
+Sets cũng có các phương thức `delete()` và `clear()`.
 
 **WeakSet**
 
-Similar to `WeakMap`, the `WeakSet` object lets you store weakly held *objects* in a collection. An object in the `WeakSet` occurs only once; it is unique in the WeakSet's collection.
+Tương tự `WeakMap`, `WeakSet` đối tượng cho phép bạn lưu trữ yêu *objects* ở trong tập hợp. Một đối tượng ở trong `WeakSet` chỉ xảy ra một lần; nó là duy nhất trong tập của Weakset.
 
 ```javascript
 const ws = new WeakSet();
@@ -502,13 +506,14 @@ ws.has(window);    // false, window has been removed
 
 <br>
 
-### 13. Classes in ES6
+### 13. Classes trong ES6
 
-ES6 introduces new class syntax. One thing to note here is that ES6 class is not a new object-oriented inheritance model. They just serve as a syntactical sugar over JavaScript's existing prototype-based inheritance.
+ES6 giới thiệu cú pháp class mới. Cần chú ý răng Class trong ES6 không phải là mô hình thừa kế hướng đối tượng mới. Chúng chỉ đóng vai trò là đường tổng hợp so với kế thừa dựa trên nguyên mẫu hiện có của JavaScript.
 
-One way to look at a class in ES6 is just a new syntax to work with prototypes and contructor functions that we'd use in ES5.
 
-Functions defined using the `static` keyword implement static/class functions on the class.
+Class trong ES6 chỉ sử dụng cú pháp mới để làm việc với prototypes và cấu trúc hàm mà chúng sử dụng trong ES5.
+
+Định nghĩa các hàm sử dụng từ khoá `static` để implement static/class functions trong class.
 
 ```javascript
 class Task {
@@ -531,9 +536,9 @@ task.showId(); // 23
 Task.loadAll(); // "Loading all tasks.."
 ```
 
-**extends and super in classes**
+**Thừa kế và super trong classes**
 
-Consider the following code:
+Theo dõi đoạn code dưới đây:
 
 ```javascript
 class Car {
@@ -554,33 +559,33 @@ let c = new Porsche();
 // Creating Porsche
 ```
 
-`extends` allow child class to inherit from parent class in ES6. It is important to note that the derived constructor must call `super()`.
+`extends` cho phép class con thừa kế từ class cha trong ES6. Điều quan trọng cần lưu ý là hàm tạo dẫn xuất phải gọi `super()`.
 
-Also, you can call parent class's method in child class's methods using `super.parentMethodName()`
+Tuy nhiên bạn cũng có thể gọi phương thức của class cha trong class con bằng cách sử dụng phương thức `super.parentMethodName()`
 
 [Read more about classes here](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
 
-A few things to keep in mind:
+Một vài cần lưu ý:
 
-* Class declarations are not hoisted. You first need to declare your class and then access it, otherwise ReferenceError will be thrown.
-* There is no need to use `function` keyword when defining functions inside a class definition.
+* Khai báo Class không phải hoisted. Trước tiên bạn cần khai báo lớp của mình và sau đó truy cập vào nó, nếu không nó sẽ ném ra ReferenceError.
+* Không cần sử dụng từ khoá `function`khi định nghĩa functions bên trong một định nghĩa class.
 
 <br>
 
 ### 14. Symbol
 
-A `Symbol` is a unique and immutable data type introduced in ES6. The purpose of a symbol is to generate a unique identifier but you can never get any access to that identifier.
+Một `Symbol` là một kiểu dữ liệu duy nhất và bất biến được giới thiệu trong ES6. Mục đích của symbol là tạo ra một mã định danh duy nhất nhưng bạn không bao giờ có thể có quyền truy cập vào mã định danh đó.
 
-Here’s how you create a symbol:
+Dưới đây là cách tạo symbol:
 
 ```javascript
 const sym = Symbol("some optional description");
 console.log(typeof sym); // symbol
 ```
 
-Note that you cannot use `new` with `Symbol(…)`.
+Chú ý rằng không được sử dụng `new` với `Symbol(…)`.
 
-If a symbol is used as a property/key of an object, it’s stored in a special way that the property will not show up in a normal enumeration of the object’s properties.
+Nếu một symbol được sử dụng như một property/key của một đối tượng, nó được lưu trữ theo cách đặc biệt mà ở trong property không hiển thị trong bảng liệt kê của các thuộc tính đối tượng..
 
 ```javascript
 const o = {
@@ -591,18 +596,18 @@ const o = {
 console.log(Object.getOwnPropertyNames(o)); // val
 ```
 
-To retrieve an object’s symbol properties, use `Object.getOwnPropertySymbols(o)`
+Để lấy một thuộc tính ký hiệu đối tượng, sử dụng `Object.getOwnPropertySymbols(o)`
 
 
 <br>
 
 ### 15. Iterators
 
-An iterator accesses the items from a collection one at a time, while keeping track of its current position within that sequence. It provides a `next()` method which returns the next item in the sequence. This method returns an object with two properties: done and value.
+Một iterator cho phép lặp từng phần tử từ một tập trong cùng một thời điểm, trong khi theo dõi vị trí hiện tại của nó trong chuỗi đó. Iterators cung cấp phương thức `next()` sẽ trả về item tiếp theo trong dãy. Phương thức này sẽ trả về một đối tượng với hai thuộc tính: done và value.
 
-ES6 has `Symbol.iterator` which specifies the default iterator for an object. Whenever an object needs to be iterated (such as at the beginning of a for..of loop), its *@@iterator* method is called with no arguments, and the returned iterator is used to obtain the values to be iterated.
+ES6 có `Symbol.iterator` chỉ định iterator mặc định cho một đối tượng. Bất cứ khi nào một đối tượng cần duyệt vòng lặp (tương tự như sử dụng vòng lặp for..of), phương thức *@@iterator* được gọi không có đối số, và iterator trả về được sử dụng để thu được các giá trị được lặp lại.
 
-Let’s look at an array, which is an iterable, and the iterator it can produce to consume its values:
+Hãy nhìn vào mảng dưới đây để hiểu về interator:
 
 ```javascript
 const arr = [11,12,13];
@@ -615,16 +620,16 @@ itr.next(); // { value: 13, done: false }
 itr.next(); // { value: undefined, done: true }
 ```
 
-Note that you can write custom iterators by defining `obj[Symbol.iterator]()` with the object definition.
+Chú ý bạn có thể customer interator bơi `obj[Symbol.iterator]()` với định nghĩa đối tượng.
 
 <br>
 
 ### 16. Generators
 
-Generator functions are a new feature in ES6 that allow a function to generate many values over time by returning an object which can be iterated over to pull values from the function one value at a time.
+Generator functions là một tính năng mới trong ES6 nó cho phép một hàm có thể tạo ra nhiều giá trị theo thời gian bằng cách trả về một đối tượng có thể được lặp đi lặp lại để kéo các giá trị từ hàm một giá trị tại một thời điểm.
 
-A generator function returns an **iterable object** when it's called.
-It is written using the new `*` syntax as well as the new `yield` keyword introduced in ES6.
+Một generator function trả về một ** đối tượng iterable** khi nó được gọi.
+Nó được viết bằng cách sử dụng cú pháp mới `*` syntax cũng như từ khoá `yield` được giới thiệu trong ES6.
 
 ```javascript
 function *infiniteNumbers() {
@@ -641,17 +646,15 @@ numbers.next(); // { value: 2, done: false }
 numbers.next(); // { value: 3, done: false }
 ```
 
-Each time *yield* is called, the yielded value becomes the next value in the sequence.
-
-Also, note that generators compute their yielded values on demand, which allows them to efficiently represent sequences that are expensive to compute, or even infinite sequences.
+Mỗi lần *yield* được gọi, giá trị yielded trở thành giá trị tiếp theo trong chuỗi.
 
 <br>
 
 ### 17. Promises
 
-ES6 has native support for promises. A *promise* is an object that is waiting for an asynchronous operation to complete, and when that operation completes, the promise is either fulfilled(resolved) or rejected.
+ES6 có hỗ trợ riêng cho các promises. Một *promise* là một đối tượng mà nó sẽ chờ cho một hoạt động không đồng bộ hoàn thành, và khi toán tử hoàn thành, promise sẽ trả về hoặc là fulfilled(resolved) hoặc là rejected.
 
-The standard way to create a Promise is by using the `new Promise()` constructor which accepts a handler that is given two functions as parameters. The first handler (typically named `resolve`) is a function to call with the future value when it's ready; and the second handler (typically named `reject`) is a function to call to reject the Promise if it can't resolve the future value.
+Cách tiêu chuẩn để tạo một promise là sử dụng cấu trúc `new Promise()` và nó sẽ nhận hai parameter. Tham số đầu tiên (thường được đặt tên là `resolve`) là một hàm được gọi khi xử lý xong và thành công, tham số thứ hai (thường được đặt tên là `reject`) được gọi khi xử lý xong và và thất bại:
 
 ```javascript
 const p = new Promise((resolve, reject) => {
@@ -663,14 +666,14 @@ const p = new Promise((resolve, reject) => {
 });
 ```
 
-Every Promise has a method named `then` which takes a pair of callbacks. The first callback is called if the promise is resolved, while the second is called if the promise is rejected.
+Mọi promise đều có một phương thức là `then` nó nhận một cặp của callbacks.
 
 ```javascript
 p.then((val) => console.log("Promise Resolved", val),
        (err) => console.log("Promise Rejected", err));
 ```
 
-Returning a value from `then` callbacks will pass the value to the next `then` callback.
+Giá trị được return bởi `then` trước sẽ chuyển vào parameter của `then` sau. Hãy nhìn ví dụ dưới đây:
 
 ```javascript
 const hello = new Promise((resolve, reject) => { resolve("Hello") });
@@ -680,8 +683,8 @@ hello.then((str) => `${str} World`)
      .then((str) => console.log(str)) // Hello World!
 ```
 
-When returning a promise, the resolved value of the promise will get passed to the next callback to effectively chain them together.
-This is a simple technique to avoid "callback hell".
+Khi trả về một promise, giá trị resolved của promise sẽ được truyền vào call back tiếp theo để nối chúng lại với nhau.
+Đây là một kỹ thuật đơn giản để tránh "callback hell".
 
 ```javascript
 const p = new Promise((resolve, reject) => { resolve(1) });
