@@ -506,7 +506,7 @@ ws.has(window);    // false, window has been removed
 
 ES6 introduces new class syntax. One thing to note here is that ES6 class is not a new object-oriented inheritance model. They just serve as a syntactical sugar over JavaScript's existing prototype-based inheritance.
 
-One way to look at a class in ES6 is just a new syntax to work with prototypes and contructor functions that we'd use in ES5.
+One way to look at a class in ES6 is just a new syntax to work with prototypes and constructor functions that we'd use in ES5.
 
 Functions defined using the `static` keyword implement static/class functions on the class.
 
